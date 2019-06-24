@@ -13,8 +13,7 @@
 
 # Open a dataset and display the data
   # Replace “C:/…/” with the exact location of the file you want to open
-  cars <- read.csv(file = "C:/…/cars.txt",
-                   stringsAsFactors = FALSE)
+  cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
   cars # To display the whole dataset, type the dataset name
   head(cars) # Display the first few records of a dataset
   names(cars) # Display variable names of a data frame, one kind of data in R
@@ -55,8 +54,8 @@
           #####################
   
 # READ IN THE CARS AND CARS2 DATASETS
-  cars <- read.csv("C:/ …/cars.txt", stringsAsFactors = FALSE)
-  cars2 <- read.csv("C:/ …/cars2.txt", stringsAsFactors = FALSE)
+  cars <- read.csv("cars.txt", stringsAsFactors = FALSE)
+  cars2 <- read.csv("cars2.txt", stringsAsFactors = FALSE)
   
 # MISSING DATA
   # Look at four variables from cars
@@ -236,3 +235,4 @@
   
   # The 262nd record is a duplicate
   duplicated(new.cars)
+  
