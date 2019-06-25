@@ -98,7 +98,7 @@ knn2
           
 
 # Read in and prepare the data
-adult <- read.csv(file = "C:/Users/infer/downloads/adult.txt", stringsAsFactors = TRUE, sep = "\t")
+adult <- read.csv(file = "adult.txt", stringsAsFactors = TRUE, sep = "\t")
 
 # Collapse some of the categories by giving them the same factor label
 levels(adult$marital.status)
