@@ -86,4 +86,56 @@ cll <- c(risk2[, 2])
 knn2 <- knn(train = risk2[,c(1,3,4)], test = new2, cl = cll, k = 3)
 
 #Display results
-knn2  
+knn2
+
+
+
+
+
+          #####################
+          ##    Chapter 11    ##
+          #####################
+          
+
+# Read in and prepare the data
+adult <- read.csv(file = "C:/Users/infer/downloads/adult.txt", stringsAsFactors = TRUE, sep = "\t")
+
+# Collapse some of the categories by giving them the same factor label
+levels(adult$marital.status)
+levels(adult$workclass)
+levels(adult$marital.status)[2:4] <- "Married" 
+levels(adult$workclass)[c(2, 3, 8)] <- "Gov" 
+levels(adult$workclass)[c(5, 6)] <- "Self" 
+levels(adult$marital.status)
+levels(adult$workclass)
+
+# Standardize the numeric variables
+adult$age.z <- (adult$age - mean(adult$age))/sd(adult$age)
+adult$education.num.z <- (adult$education.num - mean(adult$education.num))/sd(adult$education.num)
+adult$capital.gain.z <- (adult$capital.gain - mean(adult$capital.gain))/sd(adult$capital.gain)
+adult$capital.loss.z <- (adult$capital.loss - mean(adult$capital.loss))/sd(adult$capital.loss)
+adult$hours.per.week.z <- (adult$hours.per.week - mean(adult$hours.per.week))/sd(adult$hours.per.week)
+
+# Use predictors to classify whether or not a person's income is less than $50K
+# Requires package “rpart”
+library("rpart")
+cartfit <- rpart(income ~ age.z + education.num.z + capital.gain.z + capital.loss.z + hours.per.week.z + race + sex + workclass + marital.status, data = adult, method = "class")
+print(cartfit)
+
+# Plot the decision tree
+# Requires package “rpart.plot”
+library("rpart.plot")
+rpart.plot(cartfit, main = "Classification Tree")
+
+# C5.0
+# Requires package “C50”
+library("C50")
+names(adult) 
+x <- adult[,c(2, 6, 9, 10, 16, 17, 18, 19, 20)]
+y <- adult$income
+c50fit1 <- C5.0(x, y)
+summary(c50fit1)
+
+# C5.0 - Pruned
+c50fit2 <- C5.0(x, y, control = C5.0Control(CF=.1))
+summary(c50fit2)
