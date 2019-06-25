@@ -52,8 +52,8 @@
   newdat <- as.data.frame(adult[,-c(1:15)]) # Get rid of the variables we no longer need
   
 # RUN THE NEURAL NET
-  install.packages("nnet")
-  #library(nnet) # Requires package nnet
+  #install.packages("nnet")
+  library(nnet) # Requires package nnet
   net.dat <- nnet(income_g50K ~ ., data = newdat, size = 8)
   table(round(net.dat$fitted.values, 1))   # If fitted values are all the same, rerun nnet
   net.dat$wts # Weights
@@ -63,10 +63,12 @@
           ##    Chapter 15   ##
           #####################
   
-  # THE CONFUSION MATRIX
+# THE CONFUSION MATRIX
   # After using the C5.0 package, the confusion matrix is included in the output of summary()
   # See Chapter 11 for data preparation and code to implement the C5.0 package
-  # ADD COSTS TO THE MODEL
+
+# ADD COSTS TO THE MODEL
+  #install.packages("C50")
   library("C50")
   
   #After data preparation from Chapter 11
