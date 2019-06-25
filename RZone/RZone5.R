@@ -39,7 +39,7 @@
 # OPEN ‘KOHONEN’ PACKAGE. READ IN AND PREPARE THE DATA
   #install.packages("kohonen")
   library(kohonen)
-  churn <- read.csv(file = "C:/…/churn.txt", stringsAsFactors=TRUE)
+  churn <- read.csv(file = "churn.txt", stringsAsFactors=TRUE)
   IntPlan <- VMPlan <- Churn <- c(rep(0, length(churn$Int.l.Plan))) # Flag variables
   for (i in 1:length(churn$Int.l.Plan)) {
     if (churn$Int.l.Plan[i]=="yes") IntPlan[i] = 1
@@ -82,3 +82,4 @@
 # TABLE OF PERCENT CHURN BY CLUSTER
   c.table <- table(Churn, som.6$unit.classif)
   round(prop.table(c.table, 2)*100, 2)
+  
