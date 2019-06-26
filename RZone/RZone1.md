@@ -1,7 +1,7 @@
 ---
 title: "R Zone 1: Chapter 1 and 2"
 date: "1 July 2019"
-author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, and Nick Forrest"
+author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 output: 
   # tufte_handout:
     # highlight: tango
@@ -17,7 +17,7 @@ output:
 # Chapter 1
 
 ### GETTING STARTED WITH R
-okay this is pretty cool
+##### hello world
 ### Comments, indents, and semicolons
 
 ```r
@@ -227,9 +227,9 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 ##    mpg cubicinches  hp    brand
 ## 1 14.0         350 165      US.
-## 2 31.9         151  71  Europe.
+## 2 31.9         110  71  Europe.
 ## 3 17.0         302 140      US.
-## 4 15.0         400 150  Europe.
+## 4 15.0         400 150      US.
 ## 5 30.5          98  63      US.
 ## 6 23.0         350 125      US.
 ```
