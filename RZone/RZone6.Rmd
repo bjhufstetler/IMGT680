@@ -23,7 +23,9 @@ library(knitr)
 ##### hello world
 ```{r}
   #install.packages("birch")
+  setwd("~/IMGT680")
   library(birch)
+  library(readr)
   loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
   loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   
