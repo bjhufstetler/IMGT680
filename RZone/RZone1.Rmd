@@ -1,19 +1,20 @@
 ---
 title: "R Zone 1: Chapter 1 and 2"
 date: "1 July 2019"
-authors:
-- Brandon Hufstetler, Garrett Alarcon, Jinan Andrews
-- Anson Cheng, and Nick Forrest
-output:
-  html_document:
-    df_print: paged
+author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, and Nick Forrest"
+output: 
+  # tufte_handout:
+    # highlight: tango
+  # html_document:
+  #   theme: journal
   tufte::tufte_html:
-    keep_md: yes
+    keep_md: true
     # highlight: tango
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
 ```
 
 # Chapter 1
@@ -30,18 +31,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Open a dataset and display the data
-Replace “C:/…/” with the exact location of the file you want to open
 ```{r,include = FALSE}
   filepath <- ""
+  setwd("~/IMGT680")
   cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
   cars # To display the whole dataset, type the dataset name
 ```
+
 ```{r}
   head(cars) # Display the first few records of a dataset
 ```
+
 ```{r}
   names(cars) # Display variable names of a data frame, one kind of data in R
 ```
+
 ```{r}
   cars$weight # Look at only the weight variable within data frame cars
 ```  
@@ -81,6 +85,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   
 ### READ IN THE CARS AND CARS2 DATASETS
 ```{r}
+  setwd("~/IMGT680")
   cars <- read.csv("cars.txt", stringsAsFactors = FALSE)
   cars2 <- read.csv("cars2.txt", stringsAsFactors = FALSE)
 ```  
@@ -133,8 +138,8 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
        xlab = "Weight",
        ylab = "Counts",
        main = "Histogram of Car Weights")
-```
-```{r} 
+
+
   # Make a box around the plot
   box(which = "plot", lty = "solid", col = "black")
 ```

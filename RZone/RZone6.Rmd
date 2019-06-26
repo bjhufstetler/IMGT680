@@ -1,19 +1,20 @@
 ---
 title: "R Zone 6: Chapter 1 and 2"
 date: "19 August 2019"
-authors:
-- Brandon Hufstetler, Garrett Alarcon, Jinan Andrews
-- Anson Cheng, and Nick Forrest
-output:
-  html_document:
-    df_print: paged
+author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, and Nick Forrest"
+output: 
+  # tufte_handout:
+    # highlight: tango
+  # html_document:
+  #   theme: journal
   tufte::tufte_html:
-    keep_md: yes
+    keep_md: true
     # highlight: tango
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
 ```
 
 # Chapter 21
@@ -22,8 +23,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
   #install.packages("birch")
   library(birch)
-  loan.test <- read.csv(file="C:/…/Loans_Test.csv", header = TRUE)
-  loan.train <- read.csv(file="C:/…/Loans_Training.csv", header = TRUE)
+  loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
+  loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   
   # Use 5,000 records for a small example
   train <- as.matrix(loan.train[1:1000,-c(1,5)])

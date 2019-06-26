@@ -1,19 +1,20 @@
 ---
 title: "R Zone 5: Chapter 1 and 2"
 date: "12 August 2019"
-authors:
-- Brandon Hufstetler, Garrett Alarcon, Jinan Andrews
-- Anson Cheng, and Nick Forrest
-output:
-  html_document:
-    df_print: paged
+author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, and Nick Forrest"
+output: 
+  # tufte_handout:
+    # highlight: tango
+  # html_document:
+  #   theme: journal
   tufte::tufte_html:
-    keep_md: yes
+    keep_md: true
     # highlight: tango
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
 ```
 
 # Chapter 19

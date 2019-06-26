@@ -17,7 +17,7 @@ output:
 # Chapter 1
 
 ### GETTING STARTED WITH R
-
+okay this is pretty cool
 ### Comments, indents, and semicolons
 
 ```r
@@ -29,6 +29,7 @@ output:
 ```
 
 ### Open a dataset and display the data
+
 
 
 ```r
@@ -45,6 +46,7 @@ output:
 ## 6 23.0         8         350 125      3900         17 1980      US.
 ```
 
+
 ```r
   names(cars) # Display variable names of a data frame, one kind of data in R
 ```
@@ -53,6 +55,7 @@ output:
 ## [1] "mpg"         "cylinders"   "cubicinches" "hp"          "weightlbs"  
 ## [6] "time.to.60"  "year"        "brand"
 ```
+
 
 ```r
   cars$weight # Look at only the weight variable within data frame cars
@@ -224,9 +227,9 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 ##    mpg cubicinches  hp    brand
 ## 1 14.0         350 165      US.
-## 2 31.9         200  71  Europe.
+## 2 31.9         151  71  Europe.
 ## 3 17.0         302 140      US.
-## 4 15.0         400 150   Japan.
+## 4 15.0         400 150  Europe.
 ## 5 30.5          98  63      US.
 ## 6 23.0         350 125      US.
 ```
