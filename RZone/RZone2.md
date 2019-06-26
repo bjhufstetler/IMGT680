@@ -1,7 +1,7 @@
 ---
-title: "R Zone 2: Chapter 1 and 2"
+title: "R Zone 2: Chapter 3 and 7"
 date: "8 July 2019"
-author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, and Nick Forrest"
+author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 output: 
   # tufte_handout:
     # highlight: tango
@@ -496,8 +496,8 @@ output:
 ```
 
 ```
-## [1] 3.93465358 1.90298358 1.05504155 0.83894803 0.12869384 0.07594028
-## [7] 0.04650860 0.01723054
+## [1] 3.91946609 1.90215878 1.06117981 0.83598751 0.14120819 0.08029053
+## [7] 0.04477050 0.01493858
 ```
 
 ```r
@@ -510,19 +510,19 @@ output:
 ## 
 ## Loadings:
 ##          PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8   
-## MINC_Z    0.124         0.929  0.346                            
-## HAGE_Z   -0.424        -0.371  0.824                            
-## ROOMS_Z   0.958  0.117                0.141  0.136 -0.115       
-## BEDRMS_Z  0.968        -0.126         0.145                     
-## POPN_Z    0.943        -0.120        -0.287                     
-## HHLDS_Z   0.970  0.103 -0.115               -0.122              
-## LAT_Z    -0.168  0.964        -0.112         0.124  0.113       
-## LONG_Z    0.166 -0.967                       0.126  0.110       
+## MINC_Z                  0.936  0.343                            
+## HAGE_Z   -0.424        -0.377  0.823                            
+## ROOMS_Z   0.958  0.101         0.103  0.155  0.118 -0.125       
+## BEDRMS_Z  0.974        -0.112         0.126                     
+## POPN_Z    0.938        -0.104        -0.308                     
+## HHLDS_Z   0.974        -0.101               -0.116              
+## LAT_Z    -0.133  0.971                       0.146              
+## LONG_Z    0.147 -0.968                       0.148              
 ## 
 ##                  PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8
-## SS loadings    3.935 1.903 1.055 0.839 0.129 0.076 0.047 0.017
-## Proportion Var 0.492 0.238 0.132 0.105 0.016 0.009 0.006 0.002
-## Cumulative Var 0.492 0.730 0.862 0.966 0.983 0.992 0.998 1.000
+## SS loadings    3.919 1.902 1.061 0.836 0.141 0.080 0.045 0.015
+## Proportion Var 0.490 0.238 0.133 0.104 0.018 0.010 0.006 0.002
+## Cumulative Var 0.490 0.728 0.860 0.965 0.983 0.993 0.998 1.000
 ```
 
 ### SCREE PLOT
@@ -558,11 +558,11 @@ output:
 ```
 
 ```
-## [1] 0.3191848
+## [1] 0.3223259
 ```
 
 ```
-## [1] 0.9989564
+## [1] 0.9990252
 ```
 
 ### VALIDATION OF THE PRINCIPAL COMPONENTS
@@ -576,19 +576,19 @@ output:
 ## 
 ## Loadings:
 ##          PC1    PC2    PC3    PC4   
-## MINC_Z    0.124         0.929  0.346
-## HAGE_Z   -0.424        -0.371  0.824
-## ROOMS_Z   0.958  0.117              
-## BEDRMS_Z  0.968        -0.126       
-## POPN_Z    0.943        -0.120       
-## HHLDS_Z   0.970  0.103 -0.115       
-## LAT_Z    -0.168  0.964        -0.112
-## LONG_Z    0.166 -0.967              
+## MINC_Z                  0.936  0.343
+## HAGE_Z   -0.424        -0.377  0.823
+## ROOMS_Z   0.958  0.101         0.103
+## BEDRMS_Z  0.974        -0.112       
+## POPN_Z    0.938        -0.104       
+## HHLDS_Z   0.974        -0.101       
+## LAT_Z    -0.133  0.971              
+## LONG_Z    0.147 -0.968              
 ## 
 ##                  PC1   PC2   PC3   PC4
-## SS loadings    3.935 1.903 1.055 0.839
-## Proportion Var 0.492 0.238 0.132 0.105
-## Cumulative Var 0.492 0.730 0.862 0.966
+## SS loadings    3.919 1.902 1.061 0.836
+## Proportion Var 0.490 0.238 0.133 0.104
+## Cumulative Var 0.490 0.728 0.860 0.965
 ```
 
 ### READ IN AND PREPARE DATA FOR FACTOR ANALYSIS
@@ -623,10 +623,10 @@ output:
 
 ```
 ## $chisq
-## [1] 1243.742
+## [1] 1248.566
 ## 
 ## $p.value
-## [1] 5.274188e-261
+## [1] 4.802611e-262
 ## 
 ## $df
 ## [1] 10
@@ -651,7 +651,7 @@ output:
 ```
 
 ```
-## [1] 1.2743935 1.0350060 0.9505910 0.9167666 0.8232428
+## [1] 1.2787980 1.0292523 0.9528561 0.9129525 0.8261412
 ```
 
 ```r
@@ -662,16 +662,16 @@ output:
 ## 
 ## Loadings:
 ##          PA1    PA2    PA3    PA4    PA5   
-## AGE_Z     0.439 -0.510  0.554  0.373  0.318
-## DEM_Z    -0.252  0.773  0.383  0.350  0.265
-## EDUC_Z    0.625  0.241 -0.400 -0.220  0.585
-## CAPNET_Z  0.526  0.276  0.510 -0.528 -0.330
-## HOURS_Z   0.592  0.207 -0.278  0.573 -0.448
+## AGE_Z     0.423 -0.495  0.631  0.312  0.284
+## DEM_Z    -0.231  0.794  0.409  0.299  0.246
+## EDUC_Z    0.633  0.205 -0.400 -0.162  0.609
+## CAPNET_Z  0.541  0.278  0.412 -0.585 -0.344
+## HOURS_Z   0.595  0.189 -0.239  0.599 -0.442
 ## 
 ##                  PA1   PA2   PA3   PA4   PA5
-## SS loadings    1.274 1.035 0.951 0.917 0.823
-## Proportion Var 0.255 0.207 0.190 0.183 0.165
-## Cumulative Var 0.255 0.462 0.652 0.835 1.000
+## SS loadings    1.279 1.029 0.953 0.913 0.826
+## Proportion Var 0.256 0.206 0.191 0.183 0.165
+## Cumulative Var 0.256 0.462 0.652 0.835 1.000
 ```
 
 ### FACTOR ANALYSIS WITH TWO COMPONENTS
@@ -682,7 +682,7 @@ output:
 ```
 
 ```
-## [1]  0.53841403  0.34978756  0.03397376 -0.00519557 -0.02977808
+## [1]  0.511437307  0.326983070  0.034352798 -0.004083564 -0.031265453
 ```
 
 ```r
@@ -693,16 +693,16 @@ output:
 ## 
 ## Loadings:
 ##          PA1    PA2   
-## AGE_Z     0.583 -0.339
-## DEM_Z    -0.119       
-## EDUC_Z    0.313  0.433
-## CAPNET_Z  0.191  0.129
-## HOURS_Z   0.223  0.174
+## AGE_Z     0.519 -0.377
+## DEM_Z    -0.109       
+## EDUC_Z    0.352  0.382
+## CAPNET_Z  0.216  0.117
+## HOURS_Z   0.245  0.157
 ## 
 ##                  PA1   PA2
-## SS loadings    0.538 0.350
-## Proportion Var 0.108 0.070
-## Cumulative Var 0.108 0.178
+## SS loadings    0.511 0.327
+## Proportion Var 0.102 0.065
+## Cumulative Var 0.102 0.168
 ```
 
 ```r
@@ -711,7 +711,7 @@ output:
 
 ```
 ##      AGE_Z      DEM_Z     EDUC_Z   CAPNET_Z    HOURS_Z 
-## 0.45497345 0.01428697 0.28585079 0.05318690 0.07990349
+## 0.41148485 0.01233267 0.26941045 0.06024223 0.08495018
 ```
 
 ### VARIMAX ROTATION
@@ -725,16 +725,16 @@ output:
 ## 
 ## Loadings:
 ##          PA1    PA2   
-## AGE_Z     0.673       
-## DEM_Z    -0.106       
-## EDUC_Z           0.534
-## CAPNET_Z         0.214
-## HOURS_Z          0.269
+## AGE_Z     0.640       
+## DEM_Z                 
+## EDUC_Z           0.518
+## CAPNET_Z         0.228
+## HOURS_Z          0.278
 ## 
 ##                  PA1   PA2
-## SS loadings    0.479 0.409
-## Proportion Var 0.096 0.082
-## Cumulative Var 0.096 0.178
+## SS loadings    0.435 0.403
+## Proportion Var 0.087 0.081
+## Cumulative Var 0.087 0.168
 ```
 
 ```r
@@ -743,7 +743,7 @@ output:
 
 ```
 ##      AGE_Z      DEM_Z     EDUC_Z   CAPNET_Z    HOURS_Z 
-## 0.45497345 0.01428697 0.28585079 0.05318690 0.07990349
+## 0.41148485 0.01233267 0.26941045 0.06024223 0.08495018
 ```
 
 ### USER-DEFINED COMPOSITES
@@ -781,12 +781,12 @@ output:
 ```
 
 ```
-##   age workclass demogweight
-## 1  39 State-gov       77516
-## 3  38   Private      215646
-## 4  53   Private      234721
-## 5  28   Private      338409
-## 6  37   Private      284582
+##   age        workclass demogweight
+## 1  39        State-gov       77516
+## 2  50 Self-emp-not-inc       83311
+## 4  53          Private      234721
+## 5  28          Private      338409
+## 6  37          Private      284582
 ```
 
 ```r
@@ -794,12 +794,12 @@ output:
 ```
 
 ```
-##    age        workclass demogweight
-## 2   50 Self-emp-not-inc       83311
-## 11  37          Private      280464
-## 22  54          Private      302146
-## 23  35      Federal-gov       76845
-## 24  43          Private      117037
+##    age workclass demogweight
+## 3   38   Private      215646
+## 9   31   Private       45781
+## 12  30 State-gov      141297
+## 13  23   Private      122272
+## 14  32   Private      205019
 ```
 
 ### REMOVE THE TARGET VARIABLE, INCOME, FROM THE TESTING DATA

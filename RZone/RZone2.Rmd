@@ -1,7 +1,7 @@
 ---
-title: "R Zone 2: Chapter 1 and 2"
+title: "R Zone 2: Chapter 3 and 7"
 date: "8 July 2019"
-author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, and Nick Forrest"
+author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 output: 
   # tufte_handout:
     # highlight: tango
