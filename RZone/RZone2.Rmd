@@ -1,17 +1,15 @@
 ---
-title: |
-  | R Zone 2
-  |Chapter 1 and 2
+title: "R Zone 2: Chapter 1 and 2"
 date: "8 July 2019"
+authors:
+- Brandon Hufstetler, Garrett Alarcon, Jinan Andrews
+- Anson Cheng, and Nick Forrest
 output:
   html_document:
     df_print: paged
   tufte::tufte_html:
     keep_md: yes
-authors:
-- Brandon Hufstetler, Garrett Alarcon,
-- Jinan Andrews, Anson Cheng,
-- and Nick Forrest
+    # highlight: tango
 ---
 
 ```{r setup, include=FALSE}
