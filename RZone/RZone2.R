@@ -1,8 +1,7 @@
           #####################
           ##    Chapter 3    ##
           #####################
-  
-  
+
 # READ IN THE CHURN DATA SET
   churn <- read.csv(file = "churn.txt", stringsAsFactors=TRUE)
   

@@ -2,7 +2,7 @@
 title: |
   | R Zone 5
   |Chapter 1 and 2
-date: "25 June 2019"
+date: "12 August 2019"
 output:
   html_document:
     df_print: paged
