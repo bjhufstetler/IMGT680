@@ -102,3 +102,4 @@
   clust.sum[2,] <- tapply(train$Debt.to.Income.Ratio, kmtrain$cluster, mean)
   clust.sum[3,] <- tapply(test$Debt.to.Income.Ratio, kmtest$cluster, sd)
   clust.sum[4,] <- tapply(train$Debt.to.Income.Ratio, kmtrain$cluster, sd)
+  
