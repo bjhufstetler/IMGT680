@@ -20,7 +20,7 @@ library(knitr)
 # Chapter 21
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
-##### hello world
+#### Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
 ```{r}
   #install.packages("birch")
   setwd("~/IMGT680")
@@ -29,7 +29,7 @@ library(knitr)
   loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   
   # Use 5,000 records for a small example
-  train <- as.matrix(loan.train[1:1000,-c(1,5)])
+  train <- as.matrix(loan.train[1:5000,-c(1,5)])
 ```
 
 ### BIRCH CLUSTERING
@@ -41,6 +41,7 @@ library(knitr)
 ```
 
 ### PLOT THE RESULTS
+#### Since only one value of k is selected (2), we cannot make a comparison to different models and BIRCH is unable to suggest a k. The clusters shown below 
 ```{r}
   par(mfrow=c(2,2))
   plot(b1[,c(2,3)], col = kb1$clust$sub)
