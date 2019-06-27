@@ -21,7 +21,7 @@ library(knitr)
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
 #### Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
-```{r}
+```{r echo=T, results='hide'}
   #install.packages("birch")
   setwd("~/IMGT680")
   library(birch)
@@ -33,7 +33,7 @@ library(knitr)
 ```
 
 ### BIRCH CLUSTERING
-```{r}
+```{r echo=T, results='hide'}
   b1 <- birch(x = train, radius=1000) # Create the Birch tree
   
   # Cluster the sub-clusters using kmeans
@@ -53,7 +53,7 @@ library(knitr)
 # Chapter 22
 
 ### READ IN AND PREPARE THE DATA
-```{r}
+```{r echo=T, results='hide'}
   i.data <- iris # Iris is a built-in dataset
   # Min-max normalization
   i.data$SL <- (i.data$Sepal.Length - min(i.data$Sepal.Length))/
@@ -119,7 +119,7 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—PREPARE THE DATA
-```{r}
+```{r echo=T, results='hide'}
   setwd("~/IMGT680")
   loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
   loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
@@ -130,7 +130,7 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—VARIABLE SUMMARIES BY CLUSTER
-```{r}
+```{r echo=T, results='hide'}
   clust.sum <- matrix(0.0, ncol = 3, nrow = 4)
   colnames(clust.sum) <- c("Cluster 1", "Cluster 2", "Cluster 3")
   rownames(clust.sum) <- c("Test Data Mean", "Train Data Mean", "Test Data Std Dev", "Test Data Std Dev")
