@@ -5,8 +5,8 @@
 # OPEN REQUIRED PACKAGE, READ IN THE DATA
   #install.packages("birch")
   library(birch)
-  loan.test <- read.csv(file="C:/…/Loans_Test.csv", header = TRUE)
-  loan.train <- read.csv(file="C:/…/Loans_Training.csv", header = TRUE)
+  loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
+  loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   
   # Use 5,000 records for a small example
   train <- as.matrix(loan.train[1:1000,-c(1,5)])
@@ -87,8 +87,8 @@
   pf(psF2, 1, n-1)
   
 # CLUSTER VALIDATION—PREPARE THE DATA
-  loan.test <- read.csv(file="C:/…/Loans_Test.csv", header = TRUE)
-  loan.train <- read.csv(file="C:/…/Loans_Training.csv", header = TRUE)
+  loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
+  loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   test <- loan.test[,-1]
   train <- loan.train[,-1]
   kmtest <- kmeans(test, centers = 3)
