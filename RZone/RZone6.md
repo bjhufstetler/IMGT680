@@ -12,19 +12,35 @@ output:
     # highlight: tango
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-```
+
 
 # Chapter 21
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
 ##### hello world
-```{r}
+
+```r
   #install.packages("birch")
   setwd("~/IMGT680")
   library(birch)
+```
+
+```
+## Loading required package: ellipse
+```
+
+```
+## 
+## Attaching package: 'ellipse'
+```
+
+```
+## The following object is masked from 'package:graphics':
+## 
+##     pairs
+```
+
+```r
   loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
   loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   
@@ -33,7 +49,8 @@ library(knitr)
 ```
 
 ### BIRCH CLUSTERING
-```{r}
+
+```r
   b1 <- birch(x = train, radius=1000) # Create the Birch tree
   
   # Cluster the sub-clusters using kmeans
@@ -41,7 +58,8 @@ library(knitr)
 ```
 
 ### PLOT THE RESULTS
-```{r}
+
+```r
   par(mfrow=c(2,2))
   plot(b1[,c(2,3)], col = kb1$clust$sub)
   plot(jitter(train[,c(1,3)], .1), col = kb1$clust$sub, pch = 16)
@@ -49,10 +67,13 @@ library(knitr)
   plot(train[,c(2,3)], col = kb1$clust$sub, pch = 16)
 ```
 
+<img src="RZone6_files/figure-html/unnamed-chunk-3-1.png"  />
+
 # Chapter 22
 
 ### READ IN AND PREPARE THE DATA
-```{r}
+
+```r
   i.data <- iris # Iris is a built-in dataset
   # Min-max normalization
   i.data$SL <- (i.data$Sepal.Length - min(i.data$Sepal.Length))/
@@ -66,7 +87,8 @@ library(knitr)
 ```
 
 ### SILHOUETTE VALUES
-```{r}
+
+```r
   # Requires package 'cluster'
   #install.packages("cluster")
   library(cluster)
@@ -77,7 +99,11 @@ library(knitr)
   sil1 <- silhouette(km1$cluster, dist1)
   plot(sil1, col = c("black", "red", "green"),
        main = "Silhouette Plot: 3-Cluster K-Means Clustering of Iris Data")
-  
+```
+
+<img src="RZone6_files/figure-html/unnamed-chunk-5-1.png"  />
+
+```r
   # k-means (k=2)
   km2 <- kmeans(i.data[,6:9], 2)
   dist2 <- dist(i.data[,6:9], method = "euclidean")
@@ -86,8 +112,11 @@ library(knitr)
        main = "Silhouette Plot: 2-Cluster K-Means Clustering of Iris Data")
 ```
 
+<img src="RZone6_files/figure-html/unnamed-chunk-5-2.png"  />
+
 ### PLOT SILHOUETTE VALUES
-```{r}
+
+```r
   silval1 <- ifelse(sil1[,3] <= 0.33, 0, 1)
   plot(i.data$PL, i.data$PW, col = silval1+1,
        pch = 16,
@@ -95,6 +124,11 @@ library(knitr)
        xlab = "Petal Length (min-max)",
        ylab = "Petal Width (min-max)")
   legend("topleft", col=c(1,2), pch = 16, legend=c("<= 0.33", "> 0.33"))
+```
+
+<img src="RZone6_files/figure-html/unnamed-chunk-6-1.png"  />
+
+```r
   silval2 <- ifelse(sil2[,3] <= 0.33, 0, 1)
   plot(i.data$PL, i.data$PW, col = silval2+1,
         pch = 16,
@@ -105,20 +139,46 @@ library(knitr)
           legend=c("<= 0.33", "> 0.33"))
 ```
 
+<img src="RZone6_files/figure-html/unnamed-chunk-6-2.png"  />
+
 ### PSEUDO-F
-```{r}
+
+```r
   # Requires package 'clusterSim'
   #install.packages("clusterSim")
   library("clusterSim")
+```
+
+```
+## Warning: package 'clusterSim' was built under R version 3.5.2
+```
+
+```
+## Loading required package: MASS
+```
+
+```r
   n <- dim(i.data)[1]
   psF1 <- index.G1(i.data[,6:9], cl = km1$cluster)
   pf(psF1, 2, n-2)
+```
+
+```
+## [1] 1
+```
+
+```r
   psF2 <- index.G1(i.data[,6:9], cl = km2$cluster)
   pf(psF2, 1, n-1)
 ```
 
+```
+## [1] 1
+```
+
 ### CLUSTER VALIDATION—PREPARE THE DATA
-```{r}
+
+```r
   setwd("~/IMGT680")
   loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
   loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
@@ -129,7 +189,8 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—VARIABLE SUMMARIES BY CLUSTER
-```{r}
+
+```r
   clust.sum <- matrix(0.0, ncol = 3, nrow = 4)
   colnames(clust.sum) <- c("Cluster 1", "Cluster 2", "Cluster 3")
   rownames(clust.sum) <- c("Test Data Mean", "Train Data Mean", "Test Data Std Dev", "Test Data Std Dev")
