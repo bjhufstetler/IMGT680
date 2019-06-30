@@ -168,20 +168,28 @@ library(knitr)
 ```
  
 ### TRANSFORMATIONS
-```{r}
+#### Outputs suppressed to save space and because they are plotted below.
+#### Min–max normalization works by seeing how much greater the field value is than the minimum value min(X), and scaling this difference by the range.
+
+```{r, results='hide'}
   # Min-max normalization
   summary(cars$weight)
   mi <- min(cars$weight)
   ma <- max(cars$weight)
   minmax.weight <- (cars$weight - mi)/(ma - mi)
   minmax.weight
-  
+```
+
+#### Z-score standardization, which is very widespread in the world of statistical analysis, works by taking the difference between the field value and the field mean value, and scaling this difference by the SD of the field values.
+```{r, results='hide'}
   # Z-score standarization
   m <- mean(cars$weight); s <- sd(cars$weight)
   z.weight <- (cars$weight - m)/s
   z.weight
   length(cars$weight)
-  
+```
+#### Decimal scaling ensures that every normalized value lies between −1 and 1.
+```{r,results='hide'}
   # Decimal scaling
   max(abs(cars$weight)) # 4 digits
   d.weight <- cars$weight/(10^4); d.weight
@@ -202,6 +210,7 @@ library(knitr)
 ```
   
 ### SKEWNESS
+#### Skewness describes the distance between the median and the mean. Positive skewness means the mean is greater than the median and negative skewness means the mean is less than the median. Zero skewness means the mean is equal to the mode (when the data is unimodal).
 ```{r}
   (3*(mean(cars$weight) - median(cars$weight)))/sd(cars$weight)
   (3*(mean(z.weight) - median(z.weight)))/sd(z.weight)
