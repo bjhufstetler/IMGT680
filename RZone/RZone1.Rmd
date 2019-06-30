@@ -19,8 +19,7 @@ library(knitr)
 
 # Chapter 1
 
-### GETTING STARTED WITH R
-##### hello world
+## GETTING STARTED WITH R
 ### Comments, indents, and semicolons
 ```{r}
   # Anything prefaced by a pound sign (#) is a comment.
@@ -31,7 +30,8 @@ library(knitr)
 ```
 
 ### Open a dataset and display the data
-```{r,include = FALSE}
+#### The setwd() command is used to make ~/IMGT680 the working directory.
+```{r, results='hide'}
   filepath <- ""
   setwd("~/IMGT680")
   cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
@@ -50,8 +50,8 @@ library(knitr)
   cars$weight # Look at only the weight variable within data frame cars
 ```  
 
-### Matrices
-Create a matrix with three rows, two columns, and every value equal to 0.0
+## Matrices
+### Create a matrix with three rows, two columns, and every value equal to 0.0
 ```{r}
   mat <- matrix(0.0, nrow = 3, ncol = 2); mat
   colnames(mat) <- c("Var 1", "Var 2") # Give a matrix variable names
@@ -59,7 +59,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ### Subset data and declare new variables
-```{r]}
+```{r}
   cars.rsub <- cars[1:50,] # Subset the data by rows
   cars.csub <- cars[,1:3] # Subset by columns
   cars.rcsub <- cars[c(1,3,5), c(2,4)] # Subset by specific rows and columns
@@ -76,7 +76,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   # Plots will fill the plot space row by row
 ```  
 ### Download and install an R Package
-```{r}
+```{r, warning=FALSE}
   #install.packages("ggplot2")
   library(ggplot2)
 ```  
@@ -124,6 +124,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ### CREATE A HISTOGRAM
+#### Distribution and outliers are easy to spot in a histogram
 ```{r}
   # Set up the plot area
   par(mfrow = c(1,1))
@@ -145,6 +146,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ### CREATE A SCATTERPLOT
+#### Outliers are easily spotted
 ```{r}
   plot(cars2$weight, cars2$mpg,
        xlim = c(0, 5000), ylim = c(0, 600),

@@ -16,8 +16,7 @@ output:
 
 # Chapter 1
 
-### GETTING STARTED WITH R
-##### hello world
+## GETTING STARTED WITH R
 ### Comments, indents, and semicolons
 
 ```r
@@ -29,7 +28,14 @@ output:
 ```
 
 ### Open a dataset and display the data
+#### The setwd() command is used to make ~/IMGT680 the working directory.
 
+```r
+  filepath <- ""
+  setwd("~/IMGT680")
+  cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
+  cars # To display the whole dataset, type the dataset name
+```
 
 
 ```r
@@ -83,8 +89,8 @@ output:
 ## [253] 2950 3988 2725 2372 3840 1800 2835 3288 3353
 ```
 
-### Matrices
-Create a matrix with three rows, two columns, and every value equal to 0.0
+## Matrices
+### Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   mat <- matrix(0.0, nrow = 3, ncol = 2); mat
@@ -130,10 +136,6 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```r
   #install.packages("ggplot2")
   library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.2
 ```
   
 # Chapter 2
@@ -227,7 +229,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 ##    mpg cubicinches  hp    brand
 ## 1 14.0         350 165      US.
-## 2 31.9         110  71  Europe.
+## 2 31.9         302  71  Europe.
 ## 3 17.0         302 140      US.
 ## 4 15.0         400 150      US.
 ## 5 30.5          98  63      US.
@@ -235,6 +237,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ### CREATE A HISTOGRAM
+#### Distribution and outliers are easy to spot in a histogram
 
 ```r
   # Set up the plot area
@@ -256,9 +259,10 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   box(which = "plot", lty = "solid", col = "black")
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-15-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-16-1.png"  />
 
 ### CREATE A SCATTERPLOT
+#### Outliers are easily spotted
 
 ```r
   plot(cars2$weight, cars2$mpg,
@@ -271,7 +275,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
          type = "p", col = "black")
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-16-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-17-1.png"  />
  
 ### DESCRIPTIVE STATISTICS
 
@@ -511,7 +515,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   box(which = "plot", lty = "solid", col = "black")
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-19-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-20-1.png"  />
   
 ### SKEWNESS
 
@@ -558,7 +562,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   lines(density(x), col = "red")
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-22-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-23-1.png"  />
  
 ### NORMAL Q-Q PLOT
 
@@ -568,7 +572,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   qqline(invsqrt.weight, col = "blue", datax = TRUE)
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-23-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-24-1.png"  />
   
 ### DE-TRANSFORM DATA
 
