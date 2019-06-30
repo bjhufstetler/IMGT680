@@ -217,6 +217,7 @@ library(knitr)
 ```
  
 ### TRANSFORMATIONS FOR NORMALITY
+#### These transformations attempt to reduce skewness and make the data "more normally distributed".
 ```{r}
   sqrt.weight <- sqrt(cars$weight) # Square root
   sqrt.weight_skew <- (3*(mean(sqrt.weight) - median(sqrt.weight))) / sd(sqrt.weight)
@@ -227,6 +228,7 @@ library(knitr)
 ```
  
 ### HISTOGRAM WITH NORMAL DISTRIBUTION OVERLAY
+#### The inverse square transformation has eliminated skewness, but it is still not normal. This is clearly seen in the histogram with a normal overlay.
 ```{r}
   par(mfrow=c(1,1))
   x <- rnorm(1000000, mean = mean (invsqrt.weight),
@@ -240,14 +242,15 @@ library(knitr)
   # Overlay with  Normal density
   lines(density(x), col = "red")
 ```
- 
+
 ### NORMAL Q-Q PLOT
+#### The Q-Q plot shows that our data shows systematic deviations from non-normality.
 ```{r}
   qqnorm(invsqrt.weight, datax = TRUE, col = "red", ylim = c(0.01, 0.03),
          main = "Normal Q-Q Plot of Inverse Square Root of Weight")
   qqline(invsqrt.weight, col = "blue", datax = TRUE)
 ```
-  
+
 ### DE-TRANSFORM DATA
 ```{r}
   # Transform x using y = 1 / sqrt(x)

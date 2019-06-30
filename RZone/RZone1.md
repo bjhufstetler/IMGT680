@@ -229,9 +229,9 @@ output:
 ```
 ##    mpg cubicinches  hp    brand
 ## 1 14.0         350 165      US.
-## 2 31.9          86  71  Europe.
+## 2 31.9         250  71  Europe.
 ## 3 17.0         302 140      US.
-## 4 15.0         400 150      US.
+## 4 15.0         400 150  Europe.
 ## 5 30.5          98  63      US.
 ## 6 23.0         350 125      US.
 ```
@@ -388,6 +388,7 @@ output:
 ```
  
 ### TRANSFORMATIONS FOR NORMALITY
+#### These transformations attempt to reduce skewness and make the data "more normally distributed".
 
 ```r
   sqrt.weight <- sqrt(cars$weight) # Square root
@@ -399,6 +400,7 @@ output:
 ```
  
 ### HISTOGRAM WITH NORMAL DISTRIBUTION OVERLAY
+#### The inverse square transformation has eliminated skewness, but it is still not normal. This is clearly seen in the histogram with a normal overlay.
 
 ```r
   par(mfrow=c(1,1))
@@ -415,8 +417,9 @@ output:
 ```
 
 <img src="RZone1_files/figure-html/unnamed-chunk-25-1.png"  />
- 
+
 ### NORMAL Q-Q PLOT
+#### The Q-Q plot shows that our data shows systematic deviations from non-normality.
 
 ```r
   qqnorm(invsqrt.weight, datax = TRUE, col = "red", ylim = c(0.01, 0.03),
@@ -425,7 +428,7 @@ output:
 ```
 
 <img src="RZone1_files/figure-html/unnamed-chunk-26-1.png"  />
-  
+
 ### DE-TRANSFORM DATA
 
 ```r
