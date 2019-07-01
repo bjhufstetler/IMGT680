@@ -20,19 +20,20 @@ library(knitr)
 # Chapter 21
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
-##### hello world
-```{r}
+#### Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
+```{r echo=T, results='hide'}
   #install.packages("birch")
+  setwd("~/IMGT680")
   library(birch)
   loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
   loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   
   # Use 5,000 records for a small example
-  train <- as.matrix(loan.train[1:1000,-c(1,5)])
+  train <- as.matrix(loan.train[1:5000,-c(1,5)])
 ```
 
 ### BIRCH CLUSTERING
-```{r}
+```{r echo=T, results='hide'}
   b1 <- birch(x = train, radius=1000) # Create the Birch tree
   
   # Cluster the sub-clusters using kmeans
@@ -40,6 +41,7 @@ library(knitr)
 ```
 
 ### PLOT THE RESULTS
+#### Since only one value of k is selected (2), we cannot make a comparison to different models and BIRCH is unable to suggest a k. The clusters shown below 
 ```{r}
   par(mfrow=c(2,2))
   plot(b1[,c(2,3)], col = kb1$clust$sub)
@@ -51,7 +53,7 @@ library(knitr)
 # Chapter 22
 
 ### READ IN AND PREPARE THE DATA
-```{r}
+```{r echo=T, results='hide'}
   i.data <- iris # Iris is a built-in dataset
   # Min-max normalization
   i.data$SL <- (i.data$Sepal.Length - min(i.data$Sepal.Length))/
@@ -117,9 +119,10 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—PREPARE THE DATA
-```{r}
-  loan.test <- read.csv(file="C:/…/Loans_Test.csv", header = TRUE)
-  loan.train <- read.csv(file="C:/…/Loans_Training.csv", header = TRUE)
+```{r echo=T, results='hide'}
+  setwd("~/IMGT680")
+  loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
+  loan.train <- read.csv(file="Loans_Training.csv", header = TRUE)
   test <- loan.test[,-1]
   train <- loan.train[,-1]
   kmtest <- kmeans(test, centers = 3)
@@ -127,7 +130,7 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—VARIABLE SUMMARIES BY CLUSTER
-```{r}
+```{r echo=T, results='hide'}
   clust.sum <- matrix(0.0, ncol = 3, nrow = 4)
   colnames(clust.sum) <- c("Cluster 1", "Cluster 2", "Cluster 3")
   rownames(clust.sum) <- c("Test Data Mean", "Train Data Mean", "Test Data Std Dev", "Test Data Std Dev")

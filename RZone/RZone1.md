@@ -16,7 +16,11 @@ output:
 
 # Chapter 1
 
+<<<<<<< HEAD
 ### GETTING STARTED WITH R
+=======
+## GETTING STARTED WITH R
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ### Comments, indents, and semicolons
 
 ```r
@@ -28,8 +32,18 @@ output:
 ```
 
 ### Open a dataset and display the data
+<<<<<<< HEAD
 #### Commentary: The commands below read and output the "Cars" data set as well as specific portions of the data set for the user to see.
+=======
+#### The setwd() command is used to make ~/IMGT680 the working directory.
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 
+```r
+  filepath <- ""
+  setwd("~/IMGT680")
+  cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
+  cars # To display the whole dataset, type the dataset name
+```
 
 
 ```r
@@ -83,8 +97,13 @@ output:
 ## [253] 2950 3988 2725 2372 3840 1800 2835 3288 3353
 ```
 
+<<<<<<< HEAD
 ### Matrices
 #### Commentary: The commands below creates a matrix based on the specified number of columns, rows, and values.
+=======
+## Matrices
+### Create a matrix with three rows, two columns, and every value equal to 0.0
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 
 ```r
   # Create a matrix with three rows, two columns, and every value equal to 0.0
@@ -233,12 +252,13 @@ output:
 ## 1 14.0         350 165      US.
 ## 2 31.9         250  71  Europe.
 ## 3 17.0         302 140      US.
-## 4 15.0         400 150      US.
+## 4 15.0         400 150  Europe.
 ## 5 30.5          98  63      US.
 ## 6 23.0         350 125      US.
 ```
 
 ### CREATE A HISTOGRAM
+#### Distribution and outliers are easy to spot in a histogram
 
 ```r
   # Set up the plot area
@@ -260,9 +280,10 @@ output:
   box(which = "plot", lty = "solid", col = "black") # creates a black box border around the plot
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-15-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-16-1.png"  />
 
 ### CREATE A SCATTERPLOT
+#### Outliers are easily spotted
 
 ```r
   plot(cars2$weight, cars2$mpg, # extracts data from weight and mpg columns in cars2.txt data
@@ -275,7 +296,7 @@ output:
          type = "p", col = "black") # creates circular points filled in with the color black
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-16-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-17-1.png"  />
  
 ### DESCRIPTIVE STATISTICS
 
@@ -321,10 +342,14 @@ output:
 ```
  
 ### TRANSFORMATIONS
+#### Outputs suppressed to save space and because they are plotted below.
+#### Min–max normalization works by seeing how much greater the field value is than the minimum value min(X), and scaling this difference by the range.
+
 
 ```r
   # Min-max normalization
   summary(cars$weight)
+<<<<<<< HEAD
 ```
 
 ```
@@ -336,55 +361,15 @@ output:
   mi <- min(cars$weight) # minimum number
   ma <- max(cars$weight) # maximum number
   minmax.weight <- (cars$weight - mi)/(ma - mi) # min-max normalization
+=======
+  mi <- min(cars$weight)
+  ma <- max(cars$weight)
+  minmax.weight <- (cars$weight - mi)/(ma - mi)
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   minmax.weight
 ```
 
-```
-##   [1] 0.76713948 0.09219858 0.54255319 0.63475177 0.12943262 0.67582742
-##   [7] 0.81264775 0.79757683 0.56648936 0.12913712 0.18676123 0.16991726
-##  [13] 0.74704492 0.60608747 0.52245863 0.81176123 0.12027187 0.53782506
-##  [19] 0.19651300 0.24143026 0.11997636 0.29166667 0.41341608 0.72133570
-##  [25] 0.10490544 0.05378251 0.04728132 0.89952719 0.57949173 0.22665485
-##  [31] 0.15277778 0.49202128 0.26388889 0.30585106 0.10992908 0.53250591
-##  [37] 0.06560284 0.32712766 0.69208038 0.48817967 0.67494090 0.89391253
-##  [43] 0.60047281 0.56353428 0.43528369 0.30200946 0.63297872 0.23108747
-##  [49] 0.09663121 0.42760047 0.84249409 0.46601655 0.58983452 0.16105201
-##  [55] 0.81767139 0.78752955 0.38918440 0.13652482 0.09574468 0.65248227
-##  [61] 0.39361702 0.22635934 0.38327423 0.14686761 0.77541371 0.56501182
-##  [67] 0.09958629 0.10401891 0.06264775 0.66991726 0.44001182 0.30348700
-##  [73] 0.19946809 0.27541371 0.17907801 0.41430260 0.43498818 0.26654846
-##  [79] 0.19267139 0.21778960 0.80141844 0.98670213 0.53546099 0.31944444
-##  [85] 0.17937352 0.00000000 0.34308511 0.54728132 0.15130024 0.32712766
-##  [91] 0.10697400 0.20301418 0.73492908 0.50709220 0.18971631 0.67789598
-##  [97] 0.85283688 0.45094563 0.65514184 0.64066194 1.00000000 0.97310875
-## [103] 0.15159574 0.17346336 0.19267139 0.30200946 0.21335697 0.13356974
-## [109] 0.31264775 0.55880615 0.19680851 0.39007092 0.80437352 0.05378251
-## [115] 0.15277778 0.64184397 0.33303783 0.42139480 0.12765957 0.80614657
-## [121] 0.17405437 0.10342790 0.90277778 0.33451537 0.06530733 0.28132388
-## [127] 0.89864066 0.18232861 0.28634752 0.05526005 0.20301418 0.31471631
-## [133] 0.98640662 0.60845154 0.83540189 0.76152482 0.10106383 0.45981087
-## [139] 0.39361702 0.40366430 0.32121749 0.16489362 0.31087470 0.04343972
-## [145] 0.58865248 0.39716312 0.51625296 0.33156028 0.61465721 0.47044917
-## [151] 0.27452719 0.27984634 0.83096927 0.45656028 0.25147754 0.49911348
-## [157] 0.15100473 0.15425532 0.30171395 0.53102837 0.41075650 0.72901891
-## [163] 0.40514184 0.38150118 0.18942080 0.51773050 0.53959811 0.28723404
-## [169] 0.35283688 0.15130024 0.20005910 0.35963357 0.07505910 0.28427896
-## [175] 0.18114657 0.17021277 0.81914894 0.60845154 0.57830969 0.12765957
-## [181] 0.40691489 0.15721040 0.76891253 0.53871158 0.23108747 0.43055556
-## [187] 0.54550827 0.68764775 0.74349882 0.92257683 0.29757683 0.31235225
-## [193] 0.83008274 0.72960993 0.72813239 0.15691489 0.25916076 0.10992908
-## [199] 0.09574468 0.09810875 0.18705674 0.30319149 0.53398345 0.59604019
-## [205] 0.23286052 0.66105201 0.14686761 0.41607565 0.73433806 0.38031915
-## [211] 0.35520095 0.54137116 0.04196217 0.13622931 0.47872340 0.29609929
-## [217] 0.10697400 0.76891253 0.29018913 0.79255319 0.46690307 0.34929078
-## [223] 0.84042553 0.65218676 0.71778960 0.11524823 0.88711584 0.01063830
-## [229] 0.28782506 0.34781324 0.57624113 0.29905437 0.28930260 0.85254137
-## [235] 0.45419622 0.15277778 0.73374704 0.39952719 0.07742317 0.17937352
-## [241] 0.72163121 0.44562648 0.77039007 0.31294326 0.80998818 0.52777778
-## [247] 0.62706856 0.13947991 0.16016548 0.26950355 0.14982270 0.30939716
-## [253] 0.39509456 0.70183215 0.32860520 0.22429078 0.65809693 0.05526005
-## [259] 0.36111111 0.49497636 0.51418440
-```
+#### Z-score standardization, which is very widespread in the world of statistical analysis, works by taking the difference between the field value and the field mean value, and scaling this difference by the SD of the field values.
 
 ```r
   # Z-score standarization
@@ -392,6 +377,7 @@ output:
   s <- sd(cars$weight) # standard deviation
   z.weight <- (cars$weight - m)/s # standard normal deviation
   z.weight
+<<<<<<< HEAD
 ```
 
 ```
@@ -452,15 +438,16 @@ output:
 
 ```r
   length(cars$weight) # length of vector
+=======
+  length(cars$weight)
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ```
-
-```
-## [1] 261
-```
+#### Decimal scaling ensures that every normalized value lies between −1 and 1.
 
 ```r
   # Decimal scaling
   max(abs(cars$weight)) # 4 digits
+<<<<<<< HEAD
 ```
 
 ```
@@ -470,36 +457,9 @@ output:
 ```r
   d.weight <- cars$weight/(10^4) # scaled by 10^4
   d.weight
-```
-
-```
-##   [1] 0.4209 0.1925 0.3449 0.3761 0.2051 0.3900 0.4363 0.4312 0.3530 0.2050
-##  [11] 0.2245 0.2188 0.4141 0.3664 0.3381 0.4360 0.2020 0.3433 0.2278 0.2430
-##  [21] 0.2019 0.2600 0.3012 0.4054 0.1968 0.1795 0.1773 0.4657 0.3574 0.2380
-##  [31] 0.2130 0.3278 0.2506 0.2648 0.1985 0.3415 0.1835 0.2720 0.3955 0.3265
-##  [41] 0.3897 0.4638 0.3645 0.3520 0.3086 0.2635 0.3755 0.2395 0.1940 0.3060
-##  [51] 0.4464 0.3190 0.3609 0.2158 0.4380 0.4278 0.2930 0.2075 0.1937 0.3821
-##  [61] 0.2945 0.2379 0.2910 0.2110 0.4237 0.3525 0.1950 0.1965 0.1825 0.3880
-##  [71] 0.3102 0.2640 0.2288 0.2545 0.2219 0.3015 0.3085 0.2515 0.2265 0.2350
-##  [81] 0.4325 0.4952 0.3425 0.2694 0.2220 0.1613 0.2774 0.3465 0.2125 0.2720
-##  [91] 0.1975 0.2300 0.4100 0.3329 0.2255 0.3907 0.4499 0.3139 0.3830 0.3781
-## [101] 0.4997 0.4906 0.2126 0.2200 0.2265 0.2635 0.2335 0.2065 0.2671 0.3504
-## [111] 0.2279 0.2933 0.4335 0.1795 0.2130 0.3785 0.2740 0.3039 0.2045 0.4341
-## [121] 0.2202 0.1963 0.4668 0.2745 0.1834 0.2565 0.4654 0.2230 0.2582 0.1800
-## [131] 0.2300 0.2678 0.4951 0.3672 0.4440 0.4190 0.1955 0.3169 0.2945 0.2979
-## [141] 0.2700 0.2171 0.2665 0.1760 0.3605 0.2957 0.3360 0.2735 0.3693 0.3205
-## [151] 0.2542 0.2560 0.4425 0.3158 0.2464 0.3302 0.2124 0.2135 0.2634 0.3410
-## [161] 0.3003 0.4080 0.2984 0.2904 0.2254 0.3365 0.3439 0.2585 0.2807 0.2125
-## [171] 0.2290 0.2830 0.1867 0.2575 0.2226 0.2189 0.4385 0.3672 0.3570 0.2045
-## [181] 0.2990 0.2145 0.4215 0.3436 0.2395 0.3070 0.3459 0.3940 0.4129 0.4735
-## [191] 0.2620 0.2670 0.4422 0.4082 0.4077 0.2144 0.2490 0.1985 0.1937 0.1945
-## [201] 0.2246 0.2639 0.3420 0.3630 0.2401 0.3850 0.2110 0.3021 0.4098 0.2900
-## [211] 0.2815 0.3445 0.1755 0.2074 0.3233 0.2615 0.1975 0.4215 0.2595 0.4295
-## [221] 0.3193 0.2795 0.4457 0.3820 0.4042 0.2003 0.4615 0.1649 0.2587 0.2790
-## [231] 0.3563 0.2625 0.2592 0.4498 0.3150 0.2130 0.4096 0.2965 0.1875 0.2220
-## [241] 0.4055 0.3121 0.4220 0.2672 0.4354 0.3399 0.3735 0.2085 0.2155 0.2525
-## [251] 0.2120 0.2660 0.2950 0.3988 0.2725 0.2372 0.3840 0.1800 0.2835 0.3288
-## [261] 0.3353
+=======
+  d.weight <- cars$weight/(10^4); d.weight
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ```
   
 ### SIDE-BY-SIDE HISTOGRAMS
@@ -519,9 +479,10 @@ output:
   box(which = "plot", lty = "solid", col = "black")
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-19-1.png"  />
+<img src="RZone1_files/figure-html/unnamed-chunk-22-1.png"  />
   
 ### SKEWNESS
+#### Skewness describes the distance between the median and the mean. Positive skewness means the mean is greater than the median and negative skewness means the mean is less than the median. Zero skewness means the mean is equal to the mode (when the data is unimodal).
 
 ```r
   (3*(mean(cars$weight) - median(cars$weight)))/sd(cars$weight) # skewness formula for cars data
@@ -540,6 +501,7 @@ output:
 ```
  
 ### TRANSFORMATIONS FOR NORMALITY
+#### These transformations attempt to reduce skewness and make the data "more normally distributed".
 
 ```r
   sqrt.weight <- sqrt(cars$weight) # Square root
@@ -551,6 +513,7 @@ output:
 ```
  
 ### HISTOGRAM WITH NORMAL DISTRIBUTION OVERLAY
+#### The inverse square transformation has eliminated skewness, but it is still not normal. This is clearly seen in the histogram with a normal overlay.
 
 ```r
   par(mfrow=c(1,1)) # creates a multi-paneled plot with 1 row by 1 column
@@ -567,9 +530,10 @@ output:
   lines(density(x), col = "red")
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-22-1.png"  />
- 
+<img src="RZone1_files/figure-html/unnamed-chunk-25-1.png"  />
+
 ### NORMAL Q-Q PLOT
+#### The Q-Q plot shows that our data shows systematic deviations from non-normality.
 
 ```r
   qqnorm(invsqrt.weight, datax = TRUE, col = "red", ylim = c(0.01, 0.03), # generates normal Quantile-Quantile (QQ) plot of the inverse sqrt values
@@ -577,8 +541,8 @@ output:
   qqline(invsqrt.weight, col = "blue", datax = TRUE) # overlays theoretical QQ line
 ```
 
-<img src="RZone1_files/figure-html/unnamed-chunk-23-1.png"  />
-  
+<img src="RZone1_files/figure-html/unnamed-chunk-26-1.png"  />
+
 ### DE-TRANSFORM DATA
 
 ```r

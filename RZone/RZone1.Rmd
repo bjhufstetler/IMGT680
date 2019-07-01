@@ -1,16 +1,22 @@
 ---
-title: "R Zone 1: Chapter 1 and 2"
-date: "1 July 2019"
+title: "| IMGT680 Homework 1\n"
 author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
-output: 
-  # tufte_handout:
-    # highlight: tango
-  # html_document:
-  #   theme: journal
-  tufte::tufte_html:
-    keep_md: true
-    # highlight: tango
+date: "1 July 2019"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+  hmtl_document: default
+geometry: margin = 1in
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyfoot[CO,CE]{Forrest - Page \thepage}
+fontsize: 11pt
+fontfamily: mathpazo
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -19,7 +25,11 @@ library(knitr)
 
 # Chapter 1
 
+<<<<<<< HEAD
 ### GETTING STARTED WITH R
+=======
+## GETTING STARTED WITH R
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ### Comments, indents, and semicolons
 ```{r}
   # Anything prefaced by a pound sign (#) is a comment.
@@ -30,9 +40,14 @@ library(knitr)
 ```
 
 ### Open a dataset and display the data
+<<<<<<< HEAD
 #### Commentary: The commands below read and output the "Cars" data set as well as specific portions of the data set for the user to see.
 ```{r,include = FALSE}
   # Replace “C:/…/” with the exact location of the file you want to open
+=======
+#### The setwd() command is used to make ~/IMGT680 the working directory.
+```{r, results='hide'}
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   filepath <- ""
   setwd("~/IMGT680") 
   cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
@@ -51,8 +66,13 @@ library(knitr)
   cars$weight # Look at only the weight variable within data frame cars
 ```  
 
+<<<<<<< HEAD
 ### Matrices
 #### Commentary: The commands below creates a matrix based on the specified number of columns, rows, and values.
+=======
+## Matrices
+### Create a matrix with three rows, two columns, and every value equal to 0.0
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ```{r}
   # Create a matrix with three rows, two columns, and every value equal to 0.0
   mat <- matrix(0.0, nrow = 3, ncol = 2); mat
@@ -61,8 +81,12 @@ library(knitr)
 ```
 
 ### Subset data and declare new variables
+<<<<<<< HEAD
 #### Commentary: The commands below creates subsets within data that has been read into the system and creates new variables.
 ```{r]}
+=======
+```{r}
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   cars.rsub <- cars[1:50,] # Subset the data by rows
   cars.csub <- cars[,1:3] # Subset by columns
   cars.rcsub <- cars[c(1,3,5), c(2,4)] # Subset by specific rows and columns
@@ -81,8 +105,12 @@ library(knitr)
 ```  
 
 ### Download and install an R Package
+<<<<<<< HEAD
 #### Commentary: The command below installs/retrieves the ggplot2 package to enable the user to plot data in a graph.
 ```{r}
+=======
+```{r, warning=FALSE}
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   #install.packages("ggplot2")
   library(ggplot2)
 ```  
@@ -132,6 +160,7 @@ library(knitr)
 ```
 
 ### CREATE A HISTOGRAM
+#### Distribution and outliers are easy to spot in a histogram
 ```{r}
   # Set up the plot area
   par(mfrow = c(1,1)) # creates a multi-paneled plot with 1 row by 1 column
@@ -153,6 +182,7 @@ library(knitr)
 ```
 
 ### CREATE A SCATTERPLOT
+#### Outliers are easily spotted
 ```{r}
   plot(cars2$weight, cars2$mpg, # extracts data from weight and mpg columns in cars2.txt data
        xlim = c(0, 5000), ylim = c(0, 600), # sets x-axis from 0 to 5000
@@ -174,21 +204,34 @@ library(knitr)
 ```
  
 ### TRANSFORMATIONS
-```{r}
+#### Outputs suppressed to save space and because they are plotted below.
+#### Min–max normalization works by seeing how much greater the field value is than the minimum value min(X), and scaling this difference by the range.
+
+```{r, results='hide'}
   # Min-max normalization
   summary(cars$weight)
   mi <- min(cars$weight) # minimum number
   ma <- max(cars$weight) # maximum number
   minmax.weight <- (cars$weight - mi)/(ma - mi) # min-max normalization
   minmax.weight
-  
+```
+
+#### Z-score standardization, which is very widespread in the world of statistical analysis, works by taking the difference between the field value and the field mean value, and scaling this difference by the SD of the field values.
+```{r, results='hide'}
   # Z-score standarization
   m <- mean(cars$weight) # mean
   s <- sd(cars$weight) # standard deviation
   z.weight <- (cars$weight - m)/s # standard normal deviation
   z.weight
+<<<<<<< HEAD
   length(cars$weight) # length of vector
   
+=======
+  length(cars$weight)
+```
+#### Decimal scaling ensures that every normalized value lies between −1 and 1.
+```{r,results='hide'}
+>>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   # Decimal scaling
   max(abs(cars$weight)) # 4 digits
   d.weight <- cars$weight/(10^4) # scaled by 10^4
@@ -212,12 +255,14 @@ library(knitr)
 ```
   
 ### SKEWNESS
+#### Skewness describes the distance between the median and the mean. Positive skewness means the mean is greater than the median and negative skewness means the mean is less than the median. Zero skewness means the mean is equal to the mode (when the data is unimodal).
 ```{r}
   (3*(mean(cars$weight) - median(cars$weight)))/sd(cars$weight) # skewness formula for cars data
   (3*(mean(z.weight) - median(z.weight)))/sd(z.weight) # skewness formula for z-score of cars data
 ```
  
 ### TRANSFORMATIONS FOR NORMALITY
+#### These transformations attempt to reduce skewness and make the data "more normally distributed".
 ```{r}
   sqrt.weight <- sqrt(cars$weight) # Square root
   sqrt.weight_skew <- (3*(mean(sqrt.weight) - median(sqrt.weight))) / sd(sqrt.weight) # skewness formula for square root of weight data
@@ -228,6 +273,7 @@ library(knitr)
 ```
  
 ### HISTOGRAM WITH NORMAL DISTRIBUTION OVERLAY
+#### The inverse square transformation has eliminated skewness, but it is still not normal. This is clearly seen in the histogram with a normal overlay.
 ```{r}
   par(mfrow=c(1,1)) # creates a multi-paneled plot with 1 row by 1 column
   x <- rnorm(1000000, mean = mean (invsqrt.weight), sd = sd(invsqrt.weight)) # generates normal random numbers using mean and standard deviation
@@ -242,14 +288,15 @@ library(knitr)
   # Overlay with  Normal density
   lines(density(x), col = "red")
 ```
- 
+
 ### NORMAL Q-Q PLOT
+#### The Q-Q plot shows that our data shows systematic deviations from non-normality.
 ```{r}
   qqnorm(invsqrt.weight, datax = TRUE, col = "red", ylim = c(0.01, 0.03), # generates normal Quantile-Quantile (QQ) plot of the inverse sqrt values
          main = "Normal Q-Q Plot of Inverse Square Root of Weight")
   qqline(invsqrt.weight, col = "blue", datax = TRUE) # overlays theoretical QQ line
 ```
-  
+
 ### DE-TRANSFORM DATA
 ```{r}
   # Transform x using y = 1 / sqrt(x)
