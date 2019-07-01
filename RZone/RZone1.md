@@ -17,7 +17,6 @@ output:
 # Chapter 1
 
 ### GETTING STARTED WITH R
-##### hello world
 ### Comments, indents, and semicolons
 
 ```r
@@ -29,6 +28,7 @@ output:
 ```
 
 ### Open a dataset and display the data
+#### Commentary: The commands below read and output the "Cars" data set as well as specific portions of the data set for the user to see.
 
 
 
@@ -84,9 +84,10 @@ output:
 ```
 
 ### Matrices
-Create a matrix with three rows, two columns, and every value equal to 0.0
+#### Commentary: The commands below creates a matrix based on the specified number of columns, rows, and values.
 
 ```r
+  # Create a matrix with three rows, two columns, and every value equal to 0.0
   mat <- matrix(0.0, nrow = 3, ncol = 2); mat
 ```
 
@@ -107,6 +108,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ### Subset data and declare new variables
+#### Commentary: The commands below creates subsets within data that has been read into the system and creates new variables.
 
 ```r
   cars.rsub <- cars[1:50,] # Subset the data by rows
@@ -119,21 +121,20 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ### Display more than one figure at a time
+#### Commentary: The commands below plots figures based on the number of specified rows and figures within each row.
 
 ```r
   par(mfrow=c(1,1)) # plots one figure; the default setting
   par(mfrow=c(2,3)) # plots six figures: three in the top row, three in the bottom row
   # Plots will fill the plot space row by row
 ```
+
 ### Download and install an R Package
+#### Commentary: The command below installs/retrieves the ggplot2 package to enable the user to plot data in a graph.
 
 ```r
   #install.packages("ggplot2")
   library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.2
 ```
   
 # Chapter 2
@@ -141,16 +142,18 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ### READ IN THE CARS AND CARS2 DATASETS
 
 ```r
-  setwd("~/IMGT680")
-  cars <- read.csv("cars.txt", stringsAsFactors = FALSE)
-  cars2 <- read.csv("cars2.txt", stringsAsFactors = FALSE)
+  setwd("C:/Users/Jinan/Documents/IMGT680")
+  # setwd("~/IMGT680") sets the working directory
+  cars <- read.csv("cars.txt", stringsAsFactors = FALSE) # reads text file Cars.txt
+  cars2 <- read.csv("cars2.txt", stringsAsFactors = FALSE) # reads text file Cars.txt
 ```
+
 ### MISSING DATA
 
 ```r
   # Look at four variables from cars
-  cars.4var <- cars[, c(1, 3, 4, 8)]
-  head(cars.4var)
+  cars.4var <- cars[, c(1, 3, 4, 8)] # renames data from columns 1,3,4,8 to cars.4var
+  head(cars.4var) # displays first few records of each column
 ```
 
 ```
@@ -165,7 +168,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   # Make certain entries missing
-  cars.4var[2,2] <- cars.4var[4,4] <- NA
+  cars.4var[2,2] <- cars.4var[4,4] <- NA # sets data from row 2, column 2 and row 4, column 4 to "NA".
   head(cars.4var)
 ```
 
@@ -181,8 +184,8 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   # Replace missing values with constants
-  cars.4var[2,2] <- 0
-  cars.4var[4,4] <- "Missing"
+  cars.4var[2,2] <- 0 # sets data from row 2, column 2 to zero
+  cars.4var[4,4] <- "Missing" # sets data from row 4, column 4 to "Missing"
   head(cars.4var)
 ```
 
@@ -198,10 +201,10 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   # Replace values with mean and mode
-  cars.4var[2,2] <- mean(na.omit(cars.4var$cubicinches))
-  our_table <- table(cars.4var$brand)
-  our_mode <- names(our_table)[our_table == max(our_table)]
-  cars.4var[4,4] <- our_mode
+  cars.4var[2,2] <- mean(na.omit(cars.4var$cubicinches)) # sets data from row 2, column 2 to the mean for CubicInches (201.5346)
+  our_table <- table(cars.4var$brand) # sets data from "brand" column to new variable, our_table
+  our_mode <- names(our_table)[our_table == max(our_table)] # sets the mode of our_table to new variable, our_mode
+  cars.4var[4,4] <- our_mode # sets row 4, column 4 to the the mode (US)
   head(cars.4var)
 ```
 
@@ -214,20 +217,21 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ## 5 30.5     98.0000  63      US.
 ## 6 23.0    350.0000 125      US.
 ```
+#### Commentary: The commands below
 
 ```r
   # Generate random observations
-  obs_brand <- sample(na.omit(cars.4var$brand), 1)
-  obs_cubicinches <- sample(na.omit(cars.4var$cubicinches), 1)
-  cars.4var[2,2] <- obs_cubicinches
-  cars.4var[4,4] <- obs_brand
+  obs_brand <- sample(na.omit(cars.4var$brand), 1) # generates 1 random number for brand columnand sets to new variable, obs_brand
+  obs_cubicinches <- sample(na.omit(cars.4var$cubicinches), 1) # generates 1 random number for cubicinches column and sets to new variable obs_cubicinches
+  cars.4var[2,2] <- obs_cubicinches # set row 2, column 2 to obs_cubicinches
+  cars.4var[4,4] <- obs_brand # set row 4, column 4 to obs_brand
   head(cars.4var)
 ```
 
 ```
 ##    mpg cubicinches  hp    brand
 ## 1 14.0         350 165      US.
-## 2 31.9         110  71  Europe.
+## 2 31.9         250  71  Europe.
 ## 3 17.0         302 140      US.
 ## 4 15.0         400 150      US.
 ## 5 30.5          98  63      US.
@@ -238,22 +242,22 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   # Set up the plot area
-  par(mfrow = c(1,1))
+  par(mfrow = c(1,1)) # creates a multi-paneled plot with 1 row by 1 column
  
   # Create the histogram bars
-  hist(cars2$weight,
-       breaks = 30,
-       xlim = c(0, 5000),
-       col = "blue",
-       border = "black",
-       ylim = c(0, 40),
-       xlab = "Weight",
-       ylab = "Counts",
-       main = "Histogram of Car Weights")
+  hist(cars2$weight, # extracts data from weight column in cars2.txt data
+       breaks = 30, # sets bin width to 30
+       xlim = c(0, 5000), # sets x-axis from 0 to 50000
+       col = "blue", # outputs blue colored columns
+       border = "black", # outputs a black border around each column
+       ylim = c(0, 40), # sets y-axis from 0 to 40
+       xlab = "Weight", # labels x-axis
+       ylab = "Counts", # labels y-axis
+       main = "Histogram of Car Weights") # creates graph title
 
 
   # Make a box around the plot
-  box(which = "plot", lty = "solid", col = "black")
+  box(which = "plot", lty = "solid", col = "black") # creates a black box border around the plot
 ```
 
 <img src="RZone1_files/figure-html/unnamed-chunk-15-1.png"  />
@@ -261,14 +265,14 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ### CREATE A SCATTERPLOT
 
 ```r
-  plot(cars2$weight, cars2$mpg,
-       xlim = c(0, 5000), ylim = c(0, 600),
-       xlab = "Weight", ylab = "MPG",
-       main = "Scatterplot of MPG by Weight",
-       type = "p", pch = 16, col = "blue")
+  plot(cars2$weight, cars2$mpg, # extracts data from weight and mpg columns in cars2.txt data
+       xlim = c(0, 5000), ylim = c(0, 600), # sets x-axis from 0 to 5000
+       xlab = "Weight", ylab = "MPG", # labels x-axis
+       main = "Scatterplot of MPG by Weight", # creates graph title
+       type = "p", pch = 16, col = "blue") # creates circular points filled in with the color blue
   #Add open black circles
   points(cars2$weight, cars2$mpg,
-         type = "p", col = "black")
+         type = "p", col = "black") # creates circular points filled in with the color black
 ```
 
 <img src="RZone1_files/figure-html/unnamed-chunk-16-1.png"  />
@@ -329,9 +333,9 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ```r
-  mi <- min(cars$weight)
-  ma <- max(cars$weight)
-  minmax.weight <- (cars$weight - mi)/(ma - mi)
+  mi <- min(cars$weight) # minimum number
+  ma <- max(cars$weight) # maximum number
+  minmax.weight <- (cars$weight - mi)/(ma - mi) # min-max normalization
   minmax.weight
 ```
 
@@ -384,8 +388,9 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   # Z-score standarization
-  m <- mean(cars$weight); s <- sd(cars$weight)
-  z.weight <- (cars$weight - m)/s
+  m <- mean(cars$weight) # mean
+  s <- sd(cars$weight) # standard deviation
+  z.weight <- (cars$weight - m)/s # standard normal deviation
   z.weight
 ```
 
@@ -446,7 +451,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ```r
-  length(cars$weight)
+  length(cars$weight) # length of vector
 ```
 
 ```
@@ -463,7 +468,8 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ```r
-  d.weight <- cars$weight/(10^4); d.weight
+  d.weight <- cars$weight/(10^4) # scaled by 10^4
+  d.weight
 ```
 
 ```
@@ -499,12 +505,14 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ### SIDE-BY-SIDE HISTOGRAMS
 
 ```r
-  par(mfrow = c(1,2))
+  par(mfrow = c(1,2)) # creates a multi-paneled plot with 1 row by 2 columns
   
   # Create two histograms
+  # Creates a histogram of weight
   hist(cars$weight, breaks = 20, xlim = c(1000, 5000),
        main = "Histogram of Weight", xlab = "Weight", ylab = "Counts")
   box(which = "plot", lty = "solid", col = "black")
+  # Creates a histogram of weight using z-score
   hist(z.weight, breaks = 20, xlim = c(-2, 3),
        main = "Histogram of Z- score of Weight",
        xlab = "Z-score of Weight", ylab = "Counts")
@@ -516,7 +524,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ### SKEWNESS
 
 ```r
-  (3*(mean(cars$weight) - median(cars$weight)))/sd(cars$weight)
+  (3*(mean(cars$weight) - median(cars$weight)))/sd(cars$weight) # skewness formula for cars data
 ```
 
 ```
@@ -524,7 +532,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ```r
-  (3*(mean(z.weight) - median(z.weight)))/sd(z.weight)
+  (3*(mean(z.weight) - median(z.weight)))/sd(z.weight) # skewness formula for z-score of cars data
 ```
 
 ```
@@ -535,20 +543,21 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 
 ```r
   sqrt.weight <- sqrt(cars$weight) # Square root
-  sqrt.weight_skew <- (3*(mean(sqrt.weight) - median(sqrt.weight))) / sd(sqrt.weight)
+  sqrt.weight_skew <- (3*(mean(sqrt.weight) - median(sqrt.weight))) / sd(sqrt.weight) # skewness formula for square root of weight data
   ln.weight <- log(cars$weight) # Natural log
-  ln.weight_skew <- (3*(mean(ln.weight) - median(ln.weight))) / sd(ln.weight)
+  ln.weight_skew <- (3*(mean(ln.weight) - median(ln.weight))) / sd(ln.weight) # skewness formula for natural log of weight data
   invsqrt.weight <- 1 / sqrt(cars$weight) # Inverse square root
-  invsqrt.weight_skew <- (3*(mean(invsqrt.weight) - median(invsqrt.weight))) /sd(invsqrt.weight)
+  invsqrt.weight_skew <- (3*(mean(invsqrt.weight) - median(invsqrt.weight))) /sd(invsqrt.weight) # skewness formula for natural log of weight data
 ```
  
 ### HISTOGRAM WITH NORMAL DISTRIBUTION OVERLAY
 
 ```r
-  par(mfrow=c(1,1))
-  x <- rnorm(1000000, mean = mean (invsqrt.weight),
-             sd = sd(invsqrt.weight))
-  hist(invsqrt.weight, breaks = 30, xlim = c(0.0125, 0.0275),
+  par(mfrow=c(1,1)) # creates a multi-paneled plot with 1 row by 1 column
+  x <- rnorm(1000000, mean = mean (invsqrt.weight), sd = sd(invsqrt.weight)) # generates normal random numbers using mean and standard deviation
+  hist(invsqrt.weight, 
+       breaks = 30, 
+       xlim = c(0.0125, 0.0275),
        col = "lightblue", prob = TRUE, border = "black",
        xlab = "Inverse Square Root of Weight",
        ylab = "Counts", main = "Histogram of  Inverse Square Root of Weight")
@@ -563,9 +572,9 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ### NORMAL Q-Q PLOT
 
 ```r
-  qqnorm(invsqrt.weight, datax = TRUE, col = "red", ylim = c(0.01, 0.03),
+  qqnorm(invsqrt.weight, datax = TRUE, col = "red", ylim = c(0.01, 0.03), # generates normal Quantile-Quantile (QQ) plot of the inverse sqrt values
          main = "Normal Q-Q Plot of Inverse Square Root of Weight")
-  qqline(invsqrt.weight, col = "blue", datax = TRUE)
+  qqline(invsqrt.weight, col = "blue", datax = TRUE) # overlays theoretical QQ line
 ```
 
 <img src="RZone1_files/figure-html/unnamed-chunk-23-1.png"  />
@@ -596,10 +605,11 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ### CREATE INDICATOR VARIABLES
 
 ```r
-  north_flag <- east_flag <- south_flag <- c(rep(NA, 10))
-  region <- c(rep(c("north", "south", "east", "west"),2), "north", "south")
+  north_flag <- east_flag <- south_flag <- c(rep(NA, 10)) # combines replications of the the value "NA" 10 times
+  region <- c(rep(c("north", "south", "east", "west"),2), "north", "south") # combines replications of N/S/E/W 2 times, North, and South
   
   # Change the region variable to indicators
+  # Utilizing looping and if/else statements to set N/E/S to zeros and ones
   for (i in 1:length(region)) {
     if(region[i] == "north") north_flag[i] = 1
     else north_flag[i] = 0
@@ -1169,7 +1179,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
   # add a column to act as an index field
   x <- c(1,1,3:1,1:4,3); y <- c(9,9:1)
   z <- c(2,1:9)
-  matrix <- t(rbind(x,y,z)); matrix
+  matrix <- t(rbind(x,y,z)); matrix # rbind = row bind
 ```
 
 ```
@@ -1187,7 +1197,7 @@ Create a matrix with three rows, two columns, and every value equal to 0.0
 ```
 
 ```r
-  indexed_m <- cbind(c(1:length(x)), matrix); indexed_m
+  indexed_m <- cbind(c(1:length(x)), matrix); indexed_m # cbind = column bind
 ```
 
 ```
