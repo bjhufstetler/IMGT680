@@ -126,7 +126,7 @@ library(knitr)
   cars.4var[4,4] <- our_mode # sets row 4, column 4 to the the mode (US)
   head(cars.4var)
 ```
-#### Commentary: The commands below
+#### Commentary: The commands below fill in the missing values with random numbers found within that variable's other entries.
 ```{r} 
   # Generate random observations
   obs_brand <- sample(na.omit(cars.4var$brand), 1) # generates 1 random number for brand columnand sets to new variable, obs_brand
