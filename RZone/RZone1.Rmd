@@ -24,12 +24,7 @@ library(knitr)
 ```
 
 # Chapter 1
-
-<<<<<<< HEAD
-### GETTING STARTED WITH R
-=======
 ## GETTING STARTED WITH R
->>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ### Comments, indents, and semicolons
 ```{r}
   # Anything prefaced by a pound sign (#) is a comment.
@@ -40,14 +35,10 @@ library(knitr)
 ```
 
 ### Open a dataset and display the data
-<<<<<<< HEAD
-#### Commentary: The commands below read and output the "Cars" data set as well as specific portions of the data set for the user to see.
+#### Commentary: The commands below read and output the "Cars" data set as well as specific portions of the data set for the user to see. The setwd() command is used to make ~/IMGT680 the working directory.
 ```{r,include = FALSE}
   # Replace “C:/…/” with the exact location of the file you want to open
-=======
-#### The setwd() command is used to make ~/IMGT680 the working directory.
 ```{r, results='hide'}
->>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   filepath <- ""
   setwd("~/IMGT680") 
   cars <- read.csv(file = "cars.txt", stringsAsFactors = FALSE)
@@ -66,13 +57,8 @@ library(knitr)
   cars$weight # Look at only the weight variable within data frame cars
 ```  
 
-<<<<<<< HEAD
 ### Matrices
 #### Commentary: The commands below creates a matrix based on the specified number of columns, rows, and values.
-=======
-## Matrices
-### Create a matrix with three rows, two columns, and every value equal to 0.0
->>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
 ```{r}
   # Create a matrix with three rows, two columns, and every value equal to 0.0
   mat <- matrix(0.0, nrow = 3, ncol = 2); mat
@@ -81,12 +67,8 @@ library(knitr)
 ```
 
 ### Subset data and declare new variables
-<<<<<<< HEAD
 #### Commentary: The commands below creates subsets within data that has been read into the system and creates new variables.
-```{r]}
-=======
 ```{r}
->>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   cars.rsub <- cars[1:50,] # Subset the data by rows
   cars.csub <- cars[,1:3] # Subset by columns
   cars.rcsub <- cars[c(1,3,5), c(2,4)] # Subset by specific rows and columns
@@ -105,18 +87,13 @@ library(knitr)
 ```  
 
 ### Download and install an R Package
-<<<<<<< HEAD
 #### Commentary: The command below installs/retrieves the ggplot2 package to enable the user to plot data in a graph.
-```{r}
-=======
 ```{r, warning=FALSE}
->>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   #install.packages("ggplot2")
   library(ggplot2)
 ```  
   
 # Chapter 2
-  
 ### READ IN THE CARS AND CARS2 DATASETS
 ```{r}
   setwd("~/IMGT680") # sets the working directory
@@ -205,7 +182,7 @@ library(knitr)
  
 ### TRANSFORMATIONS
 #### Outputs suppressed to save space and because they are plotted below.
-#### Min–max normalization works by seeing how much greater the field value is than the minimum value min(X), and scaling this difference by the range.
+Min–max normalization works by seeing how much greater the field value is than the minimum value min(X), and scaling this difference by the range.
 
 ```{r, results='hide'}
   # Min-max normalization
@@ -223,15 +200,10 @@ library(knitr)
   s <- sd(cars$weight) # standard deviation
   z.weight <- (cars$weight - m)/s # standard normal deviation
   z.weight
-<<<<<<< HEAD
   length(cars$weight) # length of vector
-  
-=======
-  length(cars$weight)
 ```
 #### Decimal scaling ensures that every normalized value lies between −1 and 1.
 ```{r,results='hide'}
->>>>>>> 58312673bf98ce11e2f937728e0f0360c6f0e99c
   # Decimal scaling
   max(abs(cars$weight)) # 4 digits
   d.weight <- cars$weight/(10^4) # scaled by 10^4
@@ -241,7 +213,6 @@ library(knitr)
 ### SIDE-BY-SIDE HISTOGRAMS
 ```{r}
   par(mfrow = c(1,2)) # creates a multi-paneled plot with 1 row by 2 columns
-  
   # Create two histograms
   # Creates a histogram of weight
   hist(cars$weight, breaks = 20, xlim = c(1000, 5000),
