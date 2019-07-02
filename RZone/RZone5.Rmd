@@ -1,15 +1,20 @@
 ---
 title: "R Zone 5: Chapter 19 and 20"
-date: "12 August 2019"
 author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
-output: 
-  # tufte_handout:
-    # highlight: tango
-  # html_document:
-  #   theme: journal
-  tufte::tufte_html:
-    keep_md: true
-    # highlight: tango
+date: "12 August 2019"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+  hmtl_document: default
+geometry: margin = 1in
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyfoot[CO,CE]{Forrest - Page \thepage}
+fontsize: 11pt
+fontfamily: mathpazo
 ---
 
 ```{r setup, include=FALSE}
