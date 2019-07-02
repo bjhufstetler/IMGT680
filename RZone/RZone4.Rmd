@@ -26,6 +26,7 @@ library(knitr)
 
 ### READ IN AND PREPARE THE DATA
 ```{r}
+  setwd("~/IMGT680")
   adult <- read.csv(file = "adult.txt", stringsAsFactors=TRUE)
   
   # Collapse categories as in Chapter 11
