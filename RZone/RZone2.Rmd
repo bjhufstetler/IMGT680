@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
 title: "R Zone 2: Chapter 3, 4 and 7"
-=======
-title: "R Zone 2: Chapter 3, 4 and 7"
->>>>>>> ab026e0f7b7a35cb7c261372396fa0e5e4a6c9a5
 date: "8 July 2019"
 author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 output: 

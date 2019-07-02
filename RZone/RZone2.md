@@ -1,5 +1,5 @@
 ---
-title: "R Zone 2: Chapter 3 and 7"
+title: "R Zone 2: Chapter 3, 4 and 7"
 date: "8 July 2019"
 author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 output: 
@@ -92,6 +92,7 @@ output:
 ```
 ## [1] 0
 ```
+### Read in the curn variable in the Churn data set, look at the first ten records, see the number o true and false churns and the proportion of churners
 
 ### BAR CHART OF VARIABLE CHURN
 
@@ -103,6 +104,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-2-1.png"  />
+### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did
 
 ### MAKE A TABLE FOR COUNTS OF CHURN AND INTERNATIONAL PLAN
 
@@ -117,6 +119,7 @@ output:
 ##   False. 2664  186
 ##   True.   346  137
 ```
+### now a table is created to look at the number of people that are and are not on an international plan and whether or not they churned. We see 2664 people are not on an international plan and do not churn but 346 do churn. For those with an international plan, 186 do not churn and 137 do.
 
 ### OVERLAYED BAR CHART
 
@@ -128,6 +131,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-4-1.png"  />
+### overlayed bar chart allows us to visually see proportion of churners and non-churners by international plan
 
 ### CREATE A TABLE WITH SUMS FOR BOTH VARIABLES
 
@@ -153,6 +157,7 @@ output:
 ##   True.   346  137  483
 ##   sum    3010  323 3333
 ```
+###sumtable tells us that 3010 are not on the international plan, 323 are on the international plan, 2850 people do not churn overall and 483 people churn overall
 
 ### CREATE A TABLE OF PROPORTIONS OVER ROWS
 
@@ -167,6 +172,7 @@ output:
 ##   False. 93.47  6.53
 ##   True.  71.64 28.36
 ```
+### creating proporations over rows, we see that 93.47% of non churners are not on the international plan compared to the 6.53% of non churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
 
 ### CREATE A TABLE OF PROPORTIONS OVER COLUMNS
 
@@ -181,6 +187,7 @@ output:
 ##   False. 88.50 57.59
 ##   True.  11.50 42.41
 ```
+### for proportions by columns, we see that 88.50% of those not on the international plan do not churn compared to the 11.50% not on the international plan that churn. 57.59% of those on the international plan do not churn and 42.41% on the international plan churn.
 
 ### CLUSTERED BAR CHART, WITH LEGEND
 
@@ -194,6 +201,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-8-1.png"  />
+### instead of an overlayed barchart, we break up the proportions of those who do and those who don't churn by international plan
 
 ### CLUSTERED BAR CHART OF CHURN AND INTERNATIONAL PLAN WITH LEGEND
 
@@ -207,6 +215,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-9-1.png"  />
+### now we look at international plan count by whether customers churned or not
 
 ### HISTOGRAM OF NON-OVERLAYED CUSTOMER SERVICE CALLS
 
@@ -217,6 +226,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-10-1.png"  />
+### this output creates a histogram of customer service calls, counting number of occurences, up to 10 customer service calls
 
 ### DOWNLOAD AND INSTALL THE R PACKAGE GGPLOT2
 
@@ -229,7 +239,7 @@ output:
 ```
 
 ```
-## Warning: package 'ggplot2' was built under R version 3.5.2
+## Warning: package 'ggplot2' was built under R version 3.5.3
 ```
 
 ```r
@@ -260,6 +270,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-11-2.png"  />
+### two overlayed bar graphs. Seems like a type in the first graph as the y axis isn't percent but rather number of occurences of each number of customer service calls. The bar is split to visually see proportion of churners and non churners. The second graph changes the y axis to a percentage so instead of graphing number of occurences, the percentage of churners and non churners in each number of customer service calls can be seen.
 
 ### TWO-SAMPLE T-TEST FOR INT'L CALLS
 
@@ -285,6 +296,7 @@ output:
 ## mean of x mean of y 
 ##  4.532982  4.163561
 ```
+### two sample t-test performed for the difference in mean number of international calls for churners and non-churners is seen to be statistically significant.The p-value of 0.003186 tells us so. The confidence interval does not contain 0 either. That means the variable, international calls, is useful for predicting churn.  
 
 ### SCATTERPLOT OF EVENING MINUTES AND DAY MINUTES, COLORED BY CHURN
 
@@ -299,6 +311,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-13-1.png"  />
+### looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is not conclusive due. Just looking at the graph, it is difficult to come up with a definite conclusion as those who churn can't even be seen.
 
 ### SCATTERPLOT OF DAY MINUTES AND CUSTOMER SERVICE CALLS, COLORED BY CHURN
 
@@ -313,6 +326,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-14-1.png"  />
+### In the graph of customer service calls versus day minutes, there appears to be an interaction between the variables  as there is a pattern in the graph.
 
 ### SCATTERPLOT MATRIX
 
@@ -321,6 +335,7 @@ output:
 ```
 
 <img src="RZone2_files/figure-html/unnamed-chunk-15-1.png"  />
+### We want to uncover possible correlation among the predictors. There does not seem to be any relationship between day mins and day calls, or between day calls and day charge. The scatterplots do not have a pattern to them. 
 
 ### REGRESSION OF DAY CHARGE VS DAY MINUTES
 
@@ -349,6 +364,7 @@ output:
 ## Multiple R-squared:      1,	Adjusted R-squared:      1 
 ## F-statistic: 3.484e+10 on 1 and 3331 DF,  p-value: < 2.2e-16
 ```
+### The graphical results do not support a general sanity check that there should be a correlation.Results tell us the day charge quals 0.0006134 + 0.17 times day minutes. The R squared and adjusted R squared are both 1 so the regression analysis tells us that there is a perfect linear relationship. This also tells us that we should eliminate one of these two variables from our analysis as they are perfectly correlated. 
 
 ### CORRELATION VALUES, WITH P-VALUES
 
@@ -390,6 +406,7 @@ output:
 ```
 ## [1] 0.6967428
 ```
+### Correlation matrix between day mins, day calls and day charge is made. Of the three p values outputted, Mins ChargeTest has a small p-value of 0 and a correlation coefficient of 1, telling us that day mins and day charge are positively correlated. 
 
 ### CORRELATION VALUES AND P-VALUES IN MATRIX FORM
 
@@ -435,6 +452,7 @@ output:
 ## [4,] 0.0264 0.5816 0.6969 0.0000 0.2743
 ## [5,] 0.8266 0.4440 0.4385 0.2743 0.0000
 ```
+### correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
 
 # Chapter 4
   
@@ -470,7 +488,7 @@ output:
 ```
 
 ```
-## Warning: package 'psych' was built under R version 3.5.2
+## Warning: package 'psych' was built under R version 3.5.3
 ```
 
 ```
@@ -487,6 +505,8 @@ output:
 ```r
   pca1 <- principal(train.house[,c(10:17)], nfactors=8, rotate="none", scores=TRUE)
 ```
+### performing PCA on part of our training data set. Extracting 8 componenets 
+
 
 ### PCA RESULTS
 
@@ -496,8 +516,8 @@ output:
 ```
 
 ```
-## [1] 3.91946609 1.90215878 1.06117981 0.83598751 0.14120819 0.08029053
-## [7] 0.04477050 0.01493858
+## [1] 3.93897705 1.90148033 1.05301594 0.83641384 0.13035545 0.08137043
+## [7] 0.04583702 0.01254993
 ```
 
 ```r
@@ -510,19 +530,19 @@ output:
 ## 
 ## Loadings:
 ##          PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8   
-## MINC_Z                  0.936  0.343                            
-## HAGE_Z   -0.424        -0.377  0.823                            
-## ROOMS_Z   0.958  0.101         0.103  0.155  0.118 -0.125       
-## BEDRMS_Z  0.974        -0.112         0.126                     
-## POPN_Z    0.938        -0.104        -0.308                     
-## HHLDS_Z   0.974        -0.101               -0.116              
-## LAT_Z    -0.133  0.971                       0.146              
-## LONG_Z    0.147 -0.968                       0.148              
+## MINC_Z                  0.941  0.320                            
+## HAGE_Z   -0.430        -0.348  0.831                            
+## ROOMS_Z   0.959  0.102         0.104  0.110  0.153 -0.122       
+## BEDRMS_Z  0.972        -0.122         0.138                     
+## POPN_Z    0.942        -0.101        -0.308                     
+## HHLDS_Z   0.972        -0.109  0.101        -0.115              
+## LAT_Z    -0.150  0.971                       0.139  0.108       
+## LONG_Z    0.158 -0.965                       0.142  0.103       
 ## 
 ##                  PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8
-## SS loadings    3.919 1.902 1.061 0.836 0.141 0.080 0.045 0.015
-## Proportion Var 0.490 0.238 0.133 0.104 0.018 0.010 0.006 0.002
-## Cumulative Var 0.490 0.728 0.860 0.965 0.983 0.993 0.998 1.000
+## SS loadings    3.939 1.901 1.053 0.836 0.130 0.081 0.046 0.013
+## Proportion Var 0.492 0.238 0.132 0.105 0.016 0.010 0.006 0.002
+## Cumulative Var 0.492 0.730 0.862 0.966 0.983 0.993 0.998 1.000
 ```
 
 ### SCREE PLOT
@@ -558,11 +578,11 @@ output:
 ```
 
 ```
-## [1] 0.3223259
+## [1] 0.3087337
 ```
 
 ```
-## [1] 0.9990252
+## [1] 0.999143
 ```
 
 ### VALIDATION OF THE PRINCIPAL COMPONENTS
@@ -576,19 +596,19 @@ output:
 ## 
 ## Loadings:
 ##          PC1    PC2    PC3    PC4   
-## MINC_Z                  0.936  0.343
-## HAGE_Z   -0.424        -0.377  0.823
-## ROOMS_Z   0.958  0.101         0.103
-## BEDRMS_Z  0.974        -0.112       
-## POPN_Z    0.938        -0.104       
-## HHLDS_Z   0.974        -0.101       
-## LAT_Z    -0.133  0.971              
-## LONG_Z    0.147 -0.968              
+## MINC_Z                  0.941  0.320
+## HAGE_Z   -0.430        -0.348  0.831
+## ROOMS_Z   0.959  0.102         0.104
+## BEDRMS_Z  0.972        -0.122       
+## POPN_Z    0.942        -0.101       
+## HHLDS_Z   0.972        -0.109  0.101
+## LAT_Z    -0.150  0.971              
+## LONG_Z    0.158 -0.965              
 ## 
 ##                  PC1   PC2   PC3   PC4
-## SS loadings    3.919 1.902 1.061 0.836
-## Proportion Var 0.490 0.238 0.133 0.104
-## Cumulative Var 0.490 0.728 0.860 0.965
+## SS loadings    3.939 1.901 1.053 0.836
+## Proportion Var 0.492 0.238 0.132 0.105
+## Cumulative Var 0.492 0.730 0.862 0.966
 ```
 
 ### READ IN AND PREPARE DATA FOR FACTOR ANALYSIS
@@ -623,10 +643,10 @@ output:
 
 ```
 ## $chisq
-## [1] 1248.566
+## [1] 1277.907
 ## 
 ## $p.value
-## [1] 4.802611e-262
+## [1] 2.240721e-268
 ## 
 ## $df
 ## [1] 10
@@ -638,6 +658,13 @@ output:
   # Requires psych, GPArotation
   #install.packages("GPArotation")
   library(GPArotation)
+```
+
+```
+## Warning: package 'GPArotation' was built under R version 3.5.2
+```
+
+```r
   fa1 <- fa(train.adult, nfactors=5, fm = "pa", rotate="none", SMC=FALSE)
 ```
 
@@ -651,7 +678,7 @@ output:
 ```
 
 ```
-## [1] 1.2787980 1.0292523 0.9528561 0.9129525 0.8261412
+## [1] 1.2783911 1.0333521 0.9555760 0.9112500 0.8214309
 ```
 
 ```r
@@ -662,16 +689,16 @@ output:
 ## 
 ## Loadings:
 ##          PA1    PA2    PA3    PA4    PA5   
-## AGE_Z     0.423 -0.495  0.631  0.312  0.284
-## DEM_Z    -0.231  0.794  0.409  0.299  0.246
-## EDUC_Z    0.633  0.205 -0.400 -0.162  0.609
-## CAPNET_Z  0.541  0.278  0.412 -0.585 -0.344
-## HOURS_Z   0.595  0.189 -0.239  0.599 -0.442
+## AGE_Z     0.425 -0.535  0.549  0.363  0.317
+## DEM_Z    -0.254  0.759  0.437  0.331  0.245
+## EDUC_Z    0.625  0.266 -0.381 -0.203  0.594
+## CAPNET_Z  0.537  0.236  0.502 -0.539 -0.337
+## HOURS_Z   0.595  0.213 -0.259  0.582 -0.442
 ## 
 ##                  PA1   PA2   PA3   PA4   PA5
-## SS loadings    1.279 1.029 0.953 0.913 0.826
-## Proportion Var 0.256 0.206 0.191 0.183 0.165
-## Cumulative Var 0.256 0.462 0.652 0.835 1.000
+## SS loadings    1.278 1.033 0.956 0.911 0.821
+## Proportion Var 0.256 0.207 0.191 0.182 0.164
+## Cumulative Var 0.256 0.462 0.653 0.836 1.000
 ```
 
 ### FACTOR ANALYSIS WITH TWO COMPONENTS
@@ -682,7 +709,7 @@ output:
 ```
 
 ```
-## [1]  0.511437307  0.326983070  0.034352798 -0.004083564 -0.031265453
+## [1]  0.525706332  0.348285619  0.030981104 -0.003892892 -0.028084925
 ```
 
 ```r
@@ -693,16 +720,16 @@ output:
 ## 
 ## Loadings:
 ##          PA1    PA2   
-## AGE_Z     0.519 -0.377
-## DEM_Z    -0.109       
-## EDUC_Z    0.352  0.382
-## CAPNET_Z  0.216  0.117
-## HOURS_Z   0.245  0.157
+## AGE_Z     0.551 -0.363
+## DEM_Z    -0.119       
+## EDUC_Z    0.331  0.416
+## CAPNET_Z  0.208  0.118
+## HOURS_Z   0.235  0.170
 ## 
 ##                  PA1   PA2
-## SS loadings    0.511 0.327
-## Proportion Var 0.102 0.065
-## Cumulative Var 0.102 0.168
+## SS loadings    0.526 0.348
+## Proportion Var 0.105 0.070
+## Cumulative Var 0.105 0.175
 ```
 
 ```r
@@ -711,7 +738,7 @@ output:
 
 ```
 ##      AGE_Z      DEM_Z     EDUC_Z   CAPNET_Z    HOURS_Z 
-## 0.41148485 0.01233267 0.26941045 0.06024223 0.08495018
+## 0.43532659 0.01450728 0.28265672 0.05722485 0.08427651
 ```
 
 ### VARIMAX ROTATION
@@ -725,16 +752,16 @@ output:
 ## 
 ## Loadings:
 ##          PA1    PA2   
-## AGE_Z     0.640       
-## DEM_Z                 
-## EDUC_Z           0.518
-## CAPNET_Z         0.228
-## HOURS_Z          0.278
+## AGE_Z     0.659       
+## DEM_Z    -0.106       
+## EDUC_Z           0.531
+## CAPNET_Z         0.219
+## HOURS_Z          0.277
 ## 
 ##                  PA1   PA2
-## SS loadings    0.435 0.403
-## Proportion Var 0.087 0.081
-## Cumulative Var 0.087 0.168
+## SS loadings    0.462 0.412
+## Proportion Var 0.092 0.082
+## Cumulative Var 0.092 0.175
 ```
 
 ```r
@@ -743,7 +770,7 @@ output:
 
 ```
 ##      AGE_Z      DEM_Z     EDUC_Z   CAPNET_Z    HOURS_Z 
-## 0.41148485 0.01233267 0.26941045 0.06024223 0.08495018
+## 0.43532659 0.01450728 0.28265672 0.05722485 0.08427651
 ```
 
 ### USER-DEFINED COMPOSITES
@@ -784,9 +811,9 @@ output:
 ##   age        workclass demogweight
 ## 1  39        State-gov       77516
 ## 2  50 Self-emp-not-inc       83311
-## 4  53          Private      234721
-## 5  28          Private      338409
 ## 6  37          Private      284582
+## 7  49          Private      160187
+## 8  52 Self-emp-not-inc      209642
 ```
 
 ```r
@@ -796,10 +823,10 @@ output:
 ```
 ##    age workclass demogweight
 ## 3   38   Private      215646
+## 4   53   Private      234721
+## 5   28   Private      338409
 ## 9   31   Private       45781
-## 12  30 State-gov      141297
-## 13  23   Private      122272
-## 14  32   Private      205019
+## 11  37   Private      280464
 ```
 
 ### REMOVE THE TARGET VARIABLE, INCOME, FROM THE TESTING DATA
