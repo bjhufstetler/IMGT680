@@ -26,7 +26,7 @@ library(knitr)
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
 #### Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
-```{r echo=T, results='hide'}
+```{r echo=T, results='hide', warning=FALSE, message=FALSE}
   #install.packages("birch")
   setwd("~/IMGT680")
   library(birch)
@@ -112,7 +112,7 @@ library(knitr)
 ```
 
 ### PSEUDO-F
-```{r}
+```{r, warning=FALSE, message=FALSE}
   # Requires package 'clusterSim'
   #install.packages("clusterSim")
   library("clusterSim")
