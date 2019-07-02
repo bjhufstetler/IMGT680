@@ -25,7 +25,7 @@ library(knitr)
 # Chapter 21
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
-#### Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
+#### Commentary: Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
 ```{r echo=T, results='hide', warning=FALSE, message=FALSE}
   #install.packages("birch")
   setwd("~/IMGT680")
@@ -46,7 +46,7 @@ library(knitr)
 ```
 
 ### PLOT THE RESULTS
-#### Since only one value of k is selected (2), we cannot make a comparison to different models and BIRCH is unable to suggest a k. The clusters shown below 
+#### Commentary: Since only one value of k is selected (2), we cannot make a comparison to different models and BIRCH is unable to suggest a k. The clusters shown below 
 ```{r}
   par(mfrow=c(2,2))
   plot(b1[,c(2,3)], col = kb1$clust$sub)
@@ -58,6 +58,7 @@ library(knitr)
 # Chapter 22
 
 ### READ IN AND PREPARE THE DATA
+#### Commentary: Min-max normalization used (from chapter 2)
 ```{r echo=T, results='hide'}
   i.data <- iris # Iris is a built-in dataset
   # Min-max normalization
@@ -135,13 +136,14 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—VARIABLE SUMMARIES BY CLUSTER
-```{r echo=T, results='hide'}
+```{r echo=T}
   clust.sum <- matrix(0.0, ncol = 3, nrow = 4)
   colnames(clust.sum) <- c("Cluster 1", "Cluster 2", "Cluster 3")
-  rownames(clust.sum) <- c("Test Data Mean", "Train Data Mean", "Test Data Std Dev", "Test Data Std Dev")
+  rownames(clust.sum) <- c("Test Data Mean", "Train Data Mean", "Test Data Std Dev", "Train Data Std Dev")
   clust.sum[1,] <- tapply(test$Debt.to.Income.Ratio, kmtest$cluster, mean)
   clust.sum[2,] <- tapply(train$Debt.to.Income.Ratio, kmtrain$cluster, mean)
   clust.sum[3,] <- tapply(test$Debt.to.Income.Ratio, kmtest$cluster, sd)
   clust.sum[4,] <- tapply(train$Debt.to.Income.Ratio, kmtrain$cluster, sd)
+  clust.sum
 ```
   
