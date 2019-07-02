@@ -66,6 +66,7 @@ library(knitr)
 
 ### OPEN ‘KOHONEN’ PACKAGE. READ IN AND PREPARE THE DATA
 ```{r}
+  setwd("~/IMGT680")
   #install.packages("kohonen")
   library(kohonen)
   churn <- read.csv(file = "churn.txt", stringsAsFactors=TRUE)
