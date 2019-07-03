@@ -264,7 +264,7 @@ library(knitr)
   library(psych)
   pca1 <- principal(train.house[,c(10:17)], nfactors=8, rotate="none", scores=TRUE)
 ```
-### Performing PCA on part of our training data set. Extracting 8 componenets 
+#### Performing PCA on part of our training data set. Extracting 8 componenets. 
 
 
 ### PCA RESULTS
@@ -276,11 +276,13 @@ library(knitr)
   # variance explained,
   pca1$loadings
 ```
+#### Eigenvalues outputted from PCA are outputted. Loadings are also outputted for each principal component. The second table tells us how much of the total variance each component explains. So for example, the first principal componenet explains 49% of the total variance. 
 
 ### SCREE PLOT
 ```{r}
   plot(pca1$values, type = "b", main = "Scree Plot for Houses Data")
 ```
+#### Scree plot of the eigenvalues against the component number. This plot is helpful in looking at the upper bound of componenets to retain. In this case, it appears we should extract a maximum number of four components as after that, the line begins to straighten out. 
 
 ### PLOT FACTOR SCORES
 ```{r}
@@ -290,6 +292,7 @@ library(knitr)
   pairs(~train.house$MINC + train.house$HAGE+pca1$scores[,4],
          labels = c("Median Income", "Housing Median Age", "Component 4 Scores"))
 ```
+#### Investigate the relationship between principal components 3 and 4 and their constituent variables. We see the relationships among median income, housing median age, and the factor scores for component 3 while the second matrix plot displays the relationships among median income, housing median age, and the factor scores for componenet 4. We see between componenet 3 and median income there is a positive correlation which reflects the positive correlation of 0.922. However, it is harder to estimate the correlation between component 3 and housing median age as seen in the lack of pattern in the graphs. In the second grpah, we see a positive correlation between componenet 4 and housing median age. Therefore, we can tell that the component weight of -0.407 for housing median age in component 3 is not of practical significance and similarly for the component weight for median income in component 4. 
 
 ### CALCULATE COMMUNALITIES
 ```{r}
@@ -297,6 +300,7 @@ library(knitr)
   comm4 <- loadings(pca1)[2,1]^2 + loadings(pca1)[2,2]^2+ loadings(pca1)[2,3]^2 + loadings(pca1)[2,4]^2
   comm3; comm4
 ```
+###Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 componenets. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. 
 
 ### VALIDATION OF THE PRINCIPAL COMPONENTS
 ```{r}
@@ -401,4 +405,4 @@ library(knitr)
   training <- training[,-16]
   names(training)
 ```  
-#### Remove the partitioning variable Part from both data sets. -15 indicates that Part is currently the 15th variable and it is being removed.
+#### Remove the partitioning variable Part from both data sets. -15 indicates that Part is currently the 15th variable and it is being removed in the testing and the 16th in training. 
