@@ -39,7 +39,7 @@ library(knitr)
   prop.churn <- sum(churn$Churn == "True") / length(churn$Churn)
   prop.churn
 ```
-### Read in the curn variable in the Churn data set, look at the first ten records, see the number o true and false churns and the proportion of churners
+#### Read in the curn variable in the Churn data set, look at the first ten records, see the number of true and false churns and the proportion of churners
 
 ### BAR CHART OF VARIABLE CHURN
 ```{r}
@@ -48,14 +48,14 @@ library(knitr)
           col = "lightblue")
   box(which = "plot", lty = "solid", col="black")
 ```
-### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did
+#### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did
 
 ### MAKE A TABLE FOR COUNTS OF CHURN AND INTERNATIONAL PLAN
 ```{r}
   counts <- table(churn$Churn, churn$Int.l.Plan, dnn=c("Churn", "International Plan"))
   counts
 ```
-### now a table is created to look at the number of people that are and are not on an international plan and whether or not they churned. We see 2664 people are not on an international plan and do not churn but 346 do churn. For those with an international plan, 186 do not churn and 137 do.
+#### Now a table is created to look at the number of people that are and are not on an international plan and whether or not they churned. We see 2664 people are not on an international plan and do not churn but 346 do churn. For those with an international plan, 186 do not churn and 137 do.
 
 ### OVERLAYED BAR CHART
 ```{r}
@@ -64,28 +64,28 @@ library(knitr)
           main = "Comparison Bar Chart: Churn Proportions by International Plan")
   box(which = "plot", lty = "solid", col="black")
 ```
-### overlayed bar chart allows us to visually see proportion of churners and non-churners by international plan
+#### Overlayed bar chart allows us to visually see proportion of churners and non-churners by international plan
 
 ### CREATE A TABLE WITH SUMS FOR BOTH VARIABLES
 ```{r}
   sumtable <- addmargins(counts, FUN = sum)
   sumtable
 ```
-###sumtable tells us that 3010 are not on the international plan, 323 are on the international plan, 2850 people do not churn overall and 483 people churn overall
+#### Sumtable tells us that 3010 are not on the international plan, 323 are on the international plan, 2850 people do not churn overall and 483 people churn overall
 
 ### CREATE A TABLE OF PROPORTIONS OVER ROWS
 ```{r}
   row.margin <- round(prop.table(counts, margin = 1), 4)*100
   row.margin
 ```
-### creating proporations over rows, we see that 93.47% of non churners are not on the international plan compared to the 6.53% of non churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
+#### Creating proporations over rows, we see that 93.47% of non churners are not on the international plan compared to the 6.53% of non churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
 
 ### CREATE A TABLE OF PROPORTIONS OVER COLUMNS
 ```{r}
   col.margin <- round(prop.table(counts, margin = 2), 4)*100
   col.margin
 ```  
-### for proportions by columns, we see that 88.50% of those not on the international plan do not churn compared to the 11.50% not on the international plan that churn. 57.59% of those on the international plan do not churn and 42.41% on the international plan churn.
+#### For proportions by columns, we see that 88.50% of those not on the international plan do not churn compared to the 11.50% not on the international plan that churn. 57.59% of those on the international plan do not churn and 42.41% on the international plan churn.
 
 ### CLUSTERED BAR CHART, WITH LEGEND
 ```{r}
@@ -96,7 +96,7 @@ library(knitr)
          pch = 15, title = "Churn")
   box(which = "plot", lty = "solid", col="black")
 ```
-### instead of an overlayed barchart, we break up the proportions of those who do and those who don't churn by international plan
+#### Instead of an overlayed barchart, we break up the proportions of those who do and those who don't churn by international plan
 
 ### CLUSTERED BAR CHART OF CHURN AND INTERNATIONAL PLAN WITH LEGEND
 ```{r}
@@ -107,7 +107,7 @@ library(knitr)
          pch = 15, title = "Int'l Plan")
   box(which = "plot", lty = "solid", col="black")
 ```
-### now we look at international plan count by whether customers churned or not
+#### Now we look at international plan count by whether customers churned or not
 
 ### HISTOGRAM OF NON-OVERLAYED CUSTOMER SERVICE CALLS
 ```{r}
@@ -115,7 +115,7 @@ library(knitr)
        col = "lightblue", ylab = "Count", xlab = "Customer Service Calls",
        main = "Histogram of Customer Service Calls")
 ```
-### this output creates a histogram of customer service calls, counting number of occurences, up to 10 customer service calls
+#### This output creates a histogram of customer service calls, counting number of occurences, up to 10 customer service calls
 
 ### DOWNLOAD AND INSTALL THE R PACKAGE GGPLOT2
 ```{r}
@@ -146,7 +146,7 @@ library(knitr)
     guides(fill=guide_legend(title="Churn")) +
     scale_fill_manual(values=c("blue", "red"))
 ```
-### two overlayed bar graphs. Seems like a type in the first graph as the y axis isn't percent but rather number of occurences of each number of customer service calls. The bar is split to visually see proportion of churners and non churners. The second graph changes the y axis to a percentage so instead of graphing number of occurences, the percentage of churners and non churners in each number of customer service calls can be seen.
+#### Two overlayed bar graphs. Seems like a type in the first graph as the y axis isn't percent but rather number of occurences of each number of customer service calls. The bar is split to visually see proportion of churners and non churners. The second graph changes the y axis to a percentage so instead of graphing number of occurences, the percentage of churners and non churners in each number of customer service calls can be seen.
 
 ### TWO-SAMPLE T-TEST FOR INT'L CALLS
 ```{r}
@@ -169,7 +169,7 @@ library(knitr)
   legend("topright", c("True", "False"),
          col = c("red", "blue"), pch = 1, title = "Churn")
 ```
-### looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is not conclusive due. Just looking at the graph, it is difficult to come up with a definite conclusion as those who churn can't even be seen.
+#### Looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is not conclusive due. Just looking at the graph, it is difficult to come up with a definite conclusion as those who churn can't even be seen.
 
 ### SCATTERPLOT OF DAY MINUTES AND CUSTOMER SERVICE CALLS, COLORED BY CHURN
 ```{r}
@@ -187,14 +187,14 @@ library(knitr)
 ```{r}
   pairs(~churn$Day.Mins + churn$Day.Calls + churn$Day.Charge)
 ```
-### We want to uncover possible correlation among the predictors. There does not seem to be any relationship between day mins and day calls, or between day calls and day charge. The scatterplots do not have a pattern to them. 
+#### We want to uncover possible correlation among the predictors. There does not seem to be any relationship between day mins and day calls, or between day calls and day charge. The scatterplots do not have a pattern to them. 
 
 ### REGRESSION OF DAY CHARGE VS DAY MINUTES
 ```{r}
   fit <- lm(churn$Day.Charge ~ churn$Day.Mins)
   summary(fit)
 ```
-### The graphical results do not support a general sanity check that there should be a correlation.Results tell us the day charge quals 0.0006134 + 0.17 times day minutes. The R squared and adjusted R squared are both 1 so the regression analysis tells us that there is a perfect linear relationship. This also tells us that we should eliminate one of these two variables from our analysis as they are perfectly correlated. 
+#### The graphical results do not support a general sanity check that there should be a correlation.Results tell us the day charge quals 0.0006134 + 0.17 times day minutes. The R squared and adjusted R squared are both 1 so the regression analysis tells us that there is a perfect linear relationship. This also tells us that we should eliminate one of these two variables from our analysis as they are perfectly correlated. 
 
 ### CORRELATION VALUES, WITH P-VALUES
 ```{r}
@@ -207,7 +207,7 @@ library(knitr)
   MinsChargeTest$p.value
   CallsChargeTest$p.value
 ```
-### Correlation matrix between day mins, day calls and day charge is made. Of the three p values outputted, Mins ChargeTest has a small p-value of 0 and a correlation coefficient of 1, telling us that day mins and day charge are positively correlated. 
+#### Correlation matrix between day mins, day calls and day charge is made. Of the three p values outputted, Mins ChargeTest has a small p-value of 0 and a correlation coefficient of 1, telling us that day mins and day charge are positively correlated. 
 
 ### CORRELATION VALUES AND P-VALUES IN MATRIX FORM
 ```{r}
@@ -231,7 +231,7 @@ library(knitr)
   round(cor(corrdata), 4)
   corrpvalues
 ```
-### correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
+#### correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
 
 # Chapter 4
   
