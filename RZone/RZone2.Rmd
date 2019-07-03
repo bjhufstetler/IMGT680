@@ -231,7 +231,7 @@ library(knitr)
   round(cor(corrdata), 4)
   corrpvalues
 ```
-#### correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
+#### Correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
 
 # Chapter 4
   
@@ -264,7 +264,7 @@ library(knitr)
   library(psych)
   pca1 <- principal(train.house[,c(10:17)], nfactors=8, rotate="none", scores=TRUE)
 ```
-### performing PCA on part of our training data set. Extracting 8 componenets 
+### Performing PCA on part of our training data set. Extracting 8 componenets 
 
 
 ### PCA RESULTS
@@ -377,6 +377,7 @@ library(knitr)
   training[1:5, c(1,2,3)]
   testing[1:5, c(1,2,3)] 
 ```
+#### Reading in the adult data and taking in length of their income. Partitioning if length is less than or equal to 0.75 for training and if greater, put into testing data set.
 
 ### REMOVE THE TARGET VARIABLE, INCOME, FROM THE TESTING DATA
 ```{r}
@@ -387,6 +388,7 @@ library(knitr)
   names(testing)
   # Target variable is no longer in the testing data
 ```
+#### Here, the variable income is removed from the testing data set.The -15 is because income is in the 15th column
 
 ### REMOVE THE PARTITIONING VARIABLE, PART, FROM BOTH DATA SETS
 ```{r}
@@ -399,3 +401,4 @@ library(knitr)
   training <- training[,-16]
   names(training)
 ```  
+#### Remove the partitioning variable Part from both data sets. -15 indicates that Part is currently the 15th variable and it is being removed.
