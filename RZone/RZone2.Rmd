@@ -300,13 +300,14 @@ library(knitr)
   comm4 <- loadings(pca1)[2,1]^2 + loadings(pca1)[2,2]^2+ loadings(pca1)[2,3]^2 + loadings(pca1)[2,4]^2
   comm3; comm4
 ```
-###Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 componenets. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. 
+###Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 componenets. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. It would be better the extract the fourth component to get the communality for housing median age over the 50% threshold. 
 
 ### VALIDATION OF THE PRINCIPAL COMPONENTS
 ```{r}
   pca2 <- principal(test.house[,c(10:17)], nfactors=4, rotate="none", scores=TRUE)
   pca2$loadings
 ```
+#### Here we are validating our findings from earlier by running PCA with just 4 componenets. 
 
 ### READ IN AND PREPARE DATA FOR FACTOR ANALYSIS
 ```{r}
@@ -327,6 +328,8 @@ library(knitr)
   test.adult <- adult.s[which(choose < .1), c(6:10)]
   train.adult <- adult.s[which(choose >= .1), c(6:10)]
 ```
+#### Reading dataset in, standardizing and then spliting it up into testing and training set. 
+
 
 ### BARTLETT'S TEST FOR SPHERICITY
 ```{r}
@@ -335,6 +338,7 @@ library(knitr)
   corrmat1 <- cor(train.adult, method = "pearson")
   cortest.bartlett(corrmat1, n = dim(train.adult)[1])
 ```
+#### p value rounds to 0 so the null hypothesis that no correlation exists among the variables is rejected. 
 
 ### FACTOR ANALYSIS WITH FIVE COMPONENTS
 ```{r}
@@ -345,6 +349,7 @@ library(knitr)
   fa1$values # Eigenvalues
   fa1$loadings # Loadings, proportion of variance, and cumulative variance
 ```
+#### Table telling us how much variability each factor extracts. 
 
 ### FACTOR ANALYSIS WITH TWO COMPONENTS
 ```{r}
@@ -353,6 +358,8 @@ library(knitr)
   fa2$loadings # Loadings
   fa2$communality # Communality
 ```
+#### FA is performed with just two factors. We see that the variability extracted is much lower due to factor loadings having much weaker correlations among the standardized variables. 
+
 
 ### VARIMAX ROTATION
 ```{r}
@@ -360,6 +367,7 @@ library(knitr)
   fa2v$loadings
   fa2v$communality
 ```
+#### Redistributes the percentage of variance explained. We see percentage of variablity explained is still very low and looking at communality, the low values reflect the fact that there is not much shared correlation among the variables.
 
 ### USER-DEFINED COMPOSITES
 ```{r}
