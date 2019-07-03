@@ -24,6 +24,7 @@ library(knitr)
 
 # Chapter 3
 ### READ IN THE CHURN DATA SET
+#### Read in the curn variable in the Churn data set, look at the first ten records, see the number of true and false churns and the proportion of churners
 ```{r}
   setwd("~/IMGT680")
   churn <- read.csv(file = "churn.txt", stringsAsFactors=TRUE)
@@ -39,55 +40,62 @@ library(knitr)
   prop.churn <- sum(churn$Churn == "True") / length(churn$Churn)
   prop.churn
 ```
-#### Read in the curn variable in the Churn data set, look at the first ten records, see the number of true and false churns and the proportion of churners
+
 
 ### BAR CHART OF VARIABLE CHURN
+#### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did
 ```{r}
   barplot(sum.churn, ylim = c(0, 3000),
           main = "Bar Graph of Churners and Non-Churners",
           col = "lightblue")
   box(which = "plot", lty = "solid", col="black")
 ```
-#### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did
+
 
 ### MAKE A TABLE FOR COUNTS OF CHURN AND INTERNATIONAL PLAN
+#### Now a table is created to look at the number of people that are and are not on an international plan and whether or not they churned. We see 2664 people are not on an international plan and do not churn but 346 do churn. For those with an international plan, 186 do not churn and 137 do.
 ```{r}
   counts <- table(churn$Churn, churn$Int.l.Plan, dnn=c("Churn", "International Plan"))
   counts
 ```
-#### Now a table is created to look at the number of people that are and are not on an international plan and whether or not they churned. We see 2664 people are not on an international plan and do not churn but 346 do churn. For those with an international plan, 186 do not churn and 137 do.
+
 
 ### OVERLAYED BAR CHART
+#### Overlayed bar chart allows us to visually see proportion of churners and non-churners by international plan
 ```{r}
   barplot(counts, legend = rownames(counts), col = c("blue", "red"),
           ylim = c(0, 3300), ylab = "Count", xlab = "International Plan",
           main = "Comparison Bar Chart: Churn Proportions by International Plan")
   box(which = "plot", lty = "solid", col="black")
 ```
-#### Overlayed bar chart allows us to visually see proportion of churners and non-churners by international plan
+
 
 ### CREATE A TABLE WITH SUMS FOR BOTH VARIABLES
+#### Sumtable tells us that 3010 are not on the international plan, 323 are on the international plan, 2850 people do not churn overall and 483 people churn overall
 ```{r}
   sumtable <- addmargins(counts, FUN = sum)
   sumtable
 ```
-#### Sumtable tells us that 3010 are not on the international plan, 323 are on the international plan, 2850 people do not churn overall and 483 people churn overall
+
 
 ### CREATE A TABLE OF PROPORTIONS OVER ROWS
+#### Creating proporations over rows, we see that 93.47% of non churners are not on the international plan compared to the 6.53% of non churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
+
 ```{r}
   row.margin <- round(prop.table(counts, margin = 1), 4)*100
   row.margin
 ```
-#### Creating proporations over rows, we see that 93.47% of non churners are not on the international plan compared to the 6.53% of non churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
 
 ### CREATE A TABLE OF PROPORTIONS OVER COLUMNS
+#### For proportions by columns, we see that 88.50% of those not on the international plan do not churn compared to the 11.50% not on the international plan that churn. 57.59% of those on the international plan do not churn and 42.41% on the international plan churn.
 ```{r}
   col.margin <- round(prop.table(counts, margin = 2), 4)*100
   col.margin
 ```  
-#### For proportions by columns, we see that 88.50% of those not on the international plan do not churn compared to the 11.50% not on the international plan that churn. 57.59% of those on the international plan do not churn and 42.41% on the international plan churn.
+
 
 ### CLUSTERED BAR CHART, WITH LEGEND
+#### Instead of an overlayed barchart, we break up the proportions of those who do and those who don't churn by international plan
 ```{r}
   barplot(counts, col = c("blue", "red"), ylim = c(0, 3300),
           ylab = "Count", xlab = "International Plan",
@@ -96,9 +104,10 @@ library(knitr)
          pch = 15, title = "Churn")
   box(which = "plot", lty = "solid", col="black")
 ```
-#### Instead of an overlayed barchart, we break up the proportions of those who do and those who don't churn by international plan
+
 
 ### CLUSTERED BAR CHART OF CHURN AND INTERNATIONAL PLAN WITH LEGEND
+#### Now we look at international plan count by whether customers churned or not
 ```{r}
   barplot(t(counts), col = c("blue", "green"), ylim = c(0, 3300),
           ylab = "Counts", xlab = "Churn",
@@ -107,17 +116,19 @@ library(knitr)
          pch = 15, title = "Int'l Plan")
   box(which = "plot", lty = "solid", col="black")
 ```
-#### Now we look at international plan count by whether customers churned or not
+
 
 ### HISTOGRAM OF NON-OVERLAYED CUSTOMER SERVICE CALLS
+#### This output creates a histogram of customer service calls, counting number of occurences, up to 10 customer service calls
 ```{r}
   hist(churn$CustServ.Calls, xlim = c(0,10),
        col = "lightblue", ylab = "Count", xlab = "Customer Service Calls",
        main = "Histogram of Customer Service Calls")
 ```
-#### This output creates a histogram of customer service calls, counting number of occurences, up to 10 customer service calls
+
 
 ### DOWNLOAD AND INSTALL THE R PACKAGE GGPLOT2
+#### Two overlayed bar graphs. Seems like a type in the first graph as the y axis isn't percent but rather number of occurences of each number of customer service calls. The bar is split to visually see proportion of churners and non churners. The second graph changes the y axis to a percentage so instead of graphing number of occurences, the percentage of churners and non churners in each number of customer service calls can be seen.
 ```{r}
   #install.packages("ggplot2")
   # Pick any CRAN mirror
@@ -146,9 +157,9 @@ library(knitr)
     guides(fill=guide_legend(title="Churn")) +
     scale_fill_manual(values=c("blue", "red"))
 ```
-#### Two overlayed bar graphs. Seems like a type in the first graph as the y axis isn't percent but rather number of occurences of each number of customer service calls. The bar is split to visually see proportion of churners and non churners. The second graph changes the y axis to a percentage so instead of graphing number of occurences, the percentage of churners and non churners in each number of customer service calls can be seen.
 
 ### TWO-SAMPLE T-TEST FOR INT'L CALLS
+#### Two sample t-test performed for the difference in mean number of international calls for churners and non-churners is seen to be statistically significant.The p-value of 0.003186 tells us so. The confidence interval does not contain 0 either. That means the variable, international calls, is useful for predicting churn.  
 ```{r}
   # Partition data
   churn.false <- subset(churn, churn$Churn == "False.")
@@ -157,9 +168,10 @@ library(knitr)
   # Run the test
   t.test(churn.false$Intl.Calls, churn.true$Intl.Calls)
 ```
-### two sample t-test performed for the difference in mean number of international calls for churners and non-churners is seen to be statistically significant.The p-value of 0.003186 tells us so. The confidence interval does not contain 0 either. That means the variable, international calls, is useful for predicting churn.  
+
 
 ### SCATTERPLOT OF EVENING MINUTES AND DAY MINUTES, COLORED BY CHURN
+#### Looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is not conclusive due. Just looking at the graph, it is difficult to come up with a definite conclusion as those who churn can't even be seen.
 ```{r}
   plot(churn$Eve.Mins, churn$Day.Mins,
        xlim = c(0, 400), ylim = c(0, 400),
@@ -169,9 +181,10 @@ library(knitr)
   legend("topright", c("True", "False"),
          col = c("red", "blue"), pch = 1, title = "Churn")
 ```
-#### Looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is not conclusive due. Just looking at the graph, it is difficult to come up with a definite conclusion as those who churn can't even be seen.
+
 
 ### SCATTERPLOT OF DAY MINUTES AND CUSTOMER SERVICE CALLS, COLORED BY CHURN
+### In the graph of customer service calls versus day minutes, there appears to be an interaction between the variables  as there is a pattern in the graph.
 ```{r}
   plot(churn$Day.Mins, churn$CustServ.Calls, xlim = c(0, 400),
        xlab = "Day Minutes", ylab = "Customer Service Calls",
@@ -181,22 +194,24 @@ library(knitr)
   legend("topright", c("True", "False"),
          col = c("red", "blue"), pch = c(16, 20), title = "Churn")
 ```
-### In the graph of customer service calls versus day minutes, there appears to be an interaction between the variables  as there is a pattern in the graph.
+
 
 ### SCATTERPLOT MATRIX
+#### We want to uncover possible correlation among the predictors. There does not seem to be any relationship between day mins and day calls, or between day calls and day charge. The scatterplots do not have a pattern to them. 
 ```{r}
   pairs(~churn$Day.Mins + churn$Day.Calls + churn$Day.Charge)
 ```
-#### We want to uncover possible correlation among the predictors. There does not seem to be any relationship between day mins and day calls, or between day calls and day charge. The scatterplots do not have a pattern to them. 
+
 
 ### REGRESSION OF DAY CHARGE VS DAY MINUTES
+#### The graphical results do not support a general sanity check that there should be a correlation.Results tell us the day charge quals 0.0006134 + 0.17 times day minutes. The R squared and adjusted R squared are both 1 so the regression analysis tells us that there is a perfect linear relationship. This also tells us that we should eliminate one of these two variables from our analysis as they are perfectly correlated. 
 ```{r}
   fit <- lm(churn$Day.Charge ~ churn$Day.Mins)
   summary(fit)
 ```
-#### The graphical results do not support a general sanity check that there should be a correlation.Results tell us the day charge quals 0.0006134 + 0.17 times day minutes. The R squared and adjusted R squared are both 1 so the regression analysis tells us that there is a perfect linear relationship. This also tells us that we should eliminate one of these two variables from our analysis as they are perfectly correlated. 
 
 ### CORRELATION VALUES, WITH P-VALUES
+#### Correlation matrix between day mins, day calls and day charge is made. Of the three p values outputted, Mins ChargeTest has a small p-value of 0 and a correlation coefficient of 1, telling us that day mins and day charge are positively correlated. 
 ```{r}
   days <- cbind(churn$Day.Mins, churn$Day.Calls, churn$Day.Charge)
   MinsCallsTest <- cor.test(churn$Day.Mins, churn$Day.Calls)
@@ -207,9 +222,10 @@ library(knitr)
   MinsChargeTest$p.value
   CallsChargeTest$p.value
 ```
-#### Correlation matrix between day mins, day calls and day charge is made. Of the three p values outputted, Mins ChargeTest has a small p-value of 0 and a correlation coefficient of 1, telling us that day mins and day charge are positively correlated. 
+
 
 ### CORRELATION VALUES AND P-VALUES IN MATRIX FORM
+#### Correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
 ```{r}
   # Collect variables of interest
   corrdata <-
@@ -231,7 +247,7 @@ library(knitr)
   round(cor(corrdata), 4)
   corrpvalues
 ```
-#### Correlation matrix done again. Ignoring the diagonals in the p-value matrix, The only low value (below 0.05) is 0.0264, which is the correlation between account length and day calls. The correlation is 0.0385 telling us that account length and day calls are positively correlated. 
+
 
 # Chapter 4
   
@@ -258,16 +274,19 @@ library(knitr)
 ```
 
 ### PRINCIPAL COMPONENT ANALYSIS
+#### Performing PCA on part of our training data set. Extracting 8 componenets. 
 ```{r}
   # Requires library "psych"
   #install.packages("psych")
   library(psych)
   pca1 <- principal(train.house[,c(10:17)], nfactors=8, rotate="none", scores=TRUE)
 ```
-#### Performing PCA on part of our training data set. Extracting 8 componenets. 
+
 
 
 ### PCA RESULTS
+
+#### Eigenvalues outputted from PCA are outputted. Loadings are also outputted for each principal component. The second table tells us how much of the total variance each component explains. So for example, the first principal componenet explains 49% of the total variance. 
 ```{r}
   # Eigenvalues:
   pca1$values
@@ -276,15 +295,16 @@ library(knitr)
   # variance explained,
   pca1$loadings
 ```
-#### Eigenvalues outputted from PCA are outputted. Loadings are also outputted for each principal component. The second table tells us how much of the total variance each component explains. So for example, the first principal componenet explains 49% of the total variance. 
 
 ### SCREE PLOT
+#### Scree plot of the eigenvalues against the component number. This plot is helpful in looking at the upper bound of componenets to retain. In this case, it appears we should extract a maximum number of four components as after that, the line begins to straighten out. 
 ```{r}
   plot(pca1$values, type = "b", main = "Scree Plot for Houses Data")
 ```
-#### Scree plot of the eigenvalues against the component number. This plot is helpful in looking at the upper bound of componenets to retain. In this case, it appears we should extract a maximum number of four components as after that, the line begins to straighten out. 
+
 
 ### PLOT FACTOR SCORES
+#### Investigate the relationship between principal components 3 and 4 and their constituent variables. We see the relationships among median income, housing median age, and the factor scores for component 3 while the second matrix plot displays the relationships among median income, housing median age, and the factor scores for componenet 4. We see between componenet 3 and median income there is a positive correlation which reflects the positive correlation of 0.922. However, it is harder to estimate the correlation between component 3 and housing median age as seen in the lack of pattern in the graphs. In the second grpah, we see a positive correlation between componenet 4 and housing median age. Therefore, we can tell that the component weight of -0.407 for housing median age in component 3 is not of practical significance and similarly for the component weight for median income in component 4. 
 ```{r}
   pairs(~train.house$MINC + train.house$HAGE+pca1$scores[,3],
          labels = c("Median Income", "Housing Median Age", "Component 3 Scores"))
@@ -292,24 +312,27 @@ library(knitr)
   pairs(~train.house$MINC + train.house$HAGE+pca1$scores[,4],
          labels = c("Median Income", "Housing Median Age", "Component 4 Scores"))
 ```
-#### Investigate the relationship between principal components 3 and 4 and their constituent variables. We see the relationships among median income, housing median age, and the factor scores for component 3 while the second matrix plot displays the relationships among median income, housing median age, and the factor scores for componenet 4. We see between componenet 3 and median income there is a positive correlation which reflects the positive correlation of 0.922. However, it is harder to estimate the correlation between component 3 and housing median age as seen in the lack of pattern in the graphs. In the second grpah, we see a positive correlation between componenet 4 and housing median age. Therefore, we can tell that the component weight of -0.407 for housing median age in component 3 is not of practical significance and similarly for the component weight for median income in component 4. 
+
 
 ### CALCULATE COMMUNALITIES
+#### Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 componenets. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. It would be better the extract the fourth component to get the communality for housing median age over the 50% threshold. 
 ```{r}
   comm3 <- loadings(pca1)[2,1]^2 + loadings(pca1)[2,2]^2 + loadings(pca1)[2,3]^2
   comm4 <- loadings(pca1)[2,1]^2 + loadings(pca1)[2,2]^2+ loadings(pca1)[2,3]^2 + loadings(pca1)[2,4]^2
   comm3; comm4
 ```
-###Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 componenets. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. It would be better the extract the fourth component to get the communality for housing median age over the 50% threshold. 
+
 
 ### VALIDATION OF THE PRINCIPAL COMPONENTS
+#### Here we are validating our findings from earlier by running PCA with just 4 componenets. 
 ```{r}
   pca2 <- principal(test.house[,c(10:17)], nfactors=4, rotate="none", scores=TRUE)
   pca2$loadings
 ```
-#### Here we are validating our findings from earlier by running PCA with just 4 componenets. 
+
 
 ### READ IN AND PREPARE DATA FOR FACTOR ANALYSIS
+#### Reading dataset in, standardizing and then spliting it up into testing and training set. 
 ```{r}
   setwd("~/IMGT680")
   adult <- read.csv(file="adult.txt", stringsAsFactors = FALSE)
@@ -328,19 +351,21 @@ library(knitr)
   test.adult <- adult.s[which(choose < .1), c(6:10)]
   train.adult <- adult.s[which(choose >= .1), c(6:10)]
 ```
-#### Reading dataset in, standardizing and then spliting it up into testing and training set. 
+
 
 
 ### BARTLETT'S TEST FOR SPHERICITY
+#### p value rounds to 0 so the null hypothesis that no correlation exists among the variables is rejected. 
 ```{r}
   # Requires package psych
   library(psych)
   corrmat1 <- cor(train.adult, method = "pearson")
   cortest.bartlett(corrmat1, n = dim(train.adult)[1])
 ```
-#### p value rounds to 0 so the null hypothesis that no correlation exists among the variables is rejected. 
+
 
 ### FACTOR ANALYSIS WITH FIVE COMPONENTS
+#### Table telling us how much variability each factor extracts. 
 ```{r}
   # Requires psych, GPArotation
   #install.packages("GPArotation")
@@ -349,25 +374,27 @@ library(knitr)
   fa1$values # Eigenvalues
   fa1$loadings # Loadings, proportion of variance, and cumulative variance
 ```
-#### Table telling us how much variability each factor extracts. 
+
 
 ### FACTOR ANALYSIS WITH TWO COMPONENTS
+#### FA is performed with just two factors. We see that the variability extracted is much lower due to factor loadings having much weaker correlations among the standardized variables. 
 ```{r}
   fa2 <- fa(train.adult, nfactors=2, fm = "pa", max.iter = 200, rotate="none")
   fa2$values # Eigenvalues
   fa2$loadings # Loadings
   fa2$communality # Communality
 ```
-#### FA is performed with just two factors. We see that the variability extracted is much lower due to factor loadings having much weaker correlations among the standardized variables. 
+
 
 
 ### VARIMAX ROTATION
+#### Redistributes the percentage of variance explained. We see percentage of variablity explained is still very low and looking at communality, the low values reflect the fact that there is not much shared correlation among the variables.
 ```{r}
   fa2v <- fa(train.adult, nfactors = 2, fm = "pa", max.iter = 200, rotate="varimax")
   fa2v$loadings
   fa2v$communality
 ```
-#### Redistributes the percentage of variance explained. We see percentage of variablity explained is still very low and looking at communality, the low values reflect the fact that there is not much shared correlation among the variables.
+
 
 ### USER-DEFINED COMPOSITES
 ```{r}
@@ -379,6 +406,7 @@ library(knitr)
 # Chapter 7
   
 ### READ IN THE DATA, PARTITION TRAINING AND TESTING DATA
+#### Reading in the adult data and taking in length of their income. Partitioning if length is less than or equal to 0.75 for training and if greater, put into testing data set.
 ```{r}
   setwd("~/IMGT680")
   adult <- read.csv(file = "adult.txt", stringsAsFactors=TRUE)
@@ -389,9 +417,10 @@ library(knitr)
   training[1:5, c(1,2,3)]
   testing[1:5, c(1,2,3)] 
 ```
-#### Reading in the adult data and taking in length of their income. Partitioning if length is less than or equal to 0.75 for training and if greater, put into testing data set.
+
 
 ### REMOVE THE TARGET VARIABLE, INCOME, FROM THE TESTING DATA
+#### Here, the variable income is removed from the testing data set.The -15 is because income is in the 15th column.
 ```{r}
   names(testing)
   
@@ -400,9 +429,10 @@ library(knitr)
   names(testing)
   # Target variable is no longer in the testing data
 ```
-#### Here, the variable income is removed from the testing data set.The -15 is because income is in the 15th column
+
 
 ### REMOVE THE PARTITIONING VARIABLE, PART, FROM BOTH DATA SETS
+#### Remove the partitioning variable Part from both data sets. -15 indicates that Part is currently the 15th variable and it is being removed in the testing and the 16th in training. 
 ```{r}
   # Part is now the 15th variable
   testing <- testing[,-15]
@@ -413,4 +443,3 @@ library(knitr)
   training <- training[,-16]
   names(training)
 ```  
-#### Remove the partitioning variable Part from both data sets. -15 indicates that Part is currently the 15th variable and it is being removed in the testing and the 16th in training. 
