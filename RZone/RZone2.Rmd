@@ -43,7 +43,7 @@ library(knitr)
 
 
 ### BAR CHART OF VARIABLE CHURN
-#### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did
+#### Bar graph of churners and non-churners show that close to 3000 people did not churn and around 500 people did.
 ```{r}
   barplot(sum.churn, ylim = c(0, 3000),
           main = "Bar Graph of Churners and Non-Churners",
