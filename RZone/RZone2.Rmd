@@ -24,7 +24,7 @@ library(knitr)
 
 # Chapter 3
 ### READ IN THE CHURN DATA SET
-#### Read in the curn variable in the Churn data set, look at the first ten records, see the number of true and false churns and the proportion of churners
+#### Read in the curn variable in the Churn data set, look at the first ten records, see the number of true and false churns and the proportion of churners. Notice that the format of the Churn variable contains a period. 
 ```{r}
   setwd("~/IMGT680")
   churn <- read.csv(file = "churn.txt", stringsAsFactors=TRUE)
@@ -37,7 +37,7 @@ library(knitr)
   sum.churn
   
   # Calculate proportion of churners
-  prop.churn <- sum(churn$Churn == "True") / length(churn$Churn)
+  prop.churn <- sum(churn$Churn == "True.") / length(churn$Churn)
   prop.churn
 ```
 
@@ -79,7 +79,7 @@ library(knitr)
 
 
 ### CREATE A TABLE OF PROPORTIONS OVER ROWS
-#### Creating proporations over rows, we see that 93.47% of non churners are not on the international plan compared to the 6.53% of non churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
+#### Creating proportions over rows, we see that 93.47% of non-churners are not on the international plan compared to the 6.53% of non-churners on the international plan. For churners, 71.64% were not on the international plan compared to the 28.36% on the international plan
 
 ```{r}
   row.margin <- round(prop.table(counts, margin = 1), 4)*100
@@ -129,7 +129,7 @@ library(knitr)
 
 ### DOWNLOAD AND INSTALL THE R PACKAGE GGPLOT2
 #### Two overlayed bar graphs. Seems like a type in the first graph as the y axis isn't percent but rather number of occurences of each number of customer service calls. The bar is split to visually see proportion of churners and non churners. The second graph changes the y axis to a percentage so instead of graphing number of occurences, the percentage of churners and non churners in each number of customer service calls can be seen.
-```{r}
+```{r, warning=FALSE}
   #install.packages("ggplot2")
   # Pick any CRAN mirror
   # (see example image)
@@ -171,13 +171,13 @@ library(knitr)
 
 
 ### SCATTERPLOT OF EVENING MINUTES AND DAY MINUTES, COLORED BY CHURN
-#### Looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is not conclusive due. Just looking at the graph, it is difficult to come up with a definite conclusion as those who churn can't even be seen.
+#### Looking at the scatterplot of day minutes vs evening minutes, the univariate evidence for a high churn rate for high evening minutes is difficult to determine. It appears that customers with high day and evening minutes are more likely to churn.
 ```{r}
   plot(churn$Eve.Mins, churn$Day.Mins,
        xlim = c(0, 400), ylim = c(0, 400),
        xlab = "Evening Minutes", ylab = "Day Minutes",
        main = "Scatterplot of Day and Evening Minutes by Churn",
-       col = ifelse(churn$Churn== "True", "red", "blue"))
+       col = ifelse(churn$Churn== "True.", "red", "blue"))
   legend("topright", c("True", "False"),
          col = c("red", "blue"), pch = 1, title = "Churn")
 ```
@@ -189,8 +189,8 @@ library(knitr)
   plot(churn$Day.Mins, churn$CustServ.Calls, xlim = c(0, 400),
        xlab = "Day Minutes", ylab = "Customer Service Calls",
        main = "Scatterplot of Day Minutes and Customer Service Calls by Churn",
-       col = ifelse(churn$Churn=="True", "red", "blue"),
-       pch = ifelse(churn$Churn=="True", 16, 20))
+       col = ifelse(churn$Churn=="True.", "red", "blue"),
+       pch = ifelse(churn$Churn=="True.", 16, 20))
   legend("topright", c("True", "False"),
          col = c("red", "blue"), pch = c(16, 20), title = "Churn")
 ```
@@ -275,7 +275,7 @@ library(knitr)
 
 ### PRINCIPAL COMPONENT ANALYSIS
 #### Performing PCA on part of our training data set. Extracting 8 componenets. 
-```{r}
+```{r, warning=FALSE, message=FALSE}
   # Requires library "psych"
   #install.packages("psych")
   library(psych)
@@ -315,7 +315,7 @@ library(knitr)
 
 
 ### CALCULATE COMMUNALITIES
-#### Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 componenets. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. It would be better the extract the fourth component to get the communality for housing median age over the 50% threshold. 
+#### Communality values for housing median age are calculated with one retaining 3 and the other retaining 4 components. Anything less than 0.5 is considered low as the variables share less than half of its variability in common with other variables. We see here that extracting three componenets is not enough as housing median age only shares 35% of its variance with other variables. It would be better the extract the fourth component to get the communality for housing median age over the 50% threshold. 
 ```{r}
   comm3 <- loadings(pca1)[2,1]^2 + loadings(pca1)[2,2]^2 + loadings(pca1)[2,3]^2
   comm4 <- loadings(pca1)[2,1]^2 + loadings(pca1)[2,2]^2+ loadings(pca1)[2,3]^2 + loadings(pca1)[2,4]^2
@@ -366,7 +366,7 @@ library(knitr)
 
 ### FACTOR ANALYSIS WITH FIVE COMPONENTS
 #### Table telling us how much variability each factor extracts. 
-```{r}
+```{r, warning=FALSE}
   # Requires psych, GPArotation
   #install.packages("GPArotation")
   library(GPArotation)
