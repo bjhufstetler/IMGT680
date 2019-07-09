@@ -35,6 +35,7 @@ library(knitr)
 ```
 
 ### DETERMINE HOW MANY INDICATOR VARIABLES ARE NEEDED
+#### Here we are looking at how many different unique levels(categories) are present within each feature in the data. This shows that there are 2 different levels of income, 2 different levels of gender, 5 different levels of race, 9 different levels of workclass, and 7 different levels of marital status in the adult.txt dataset. 
 ```{r}
   unique(adult$income)             # One variable for income
   unique(adult$sex)                   # One variable for sex
@@ -44,6 +45,7 @@ library(knitr)
 ```
 
 ### CREATE INDICATOR VARIABLES
+#### First, we define the new indicator variables that we want to populate. These will all be binary indicators, so if a specific level is present in the data, the value of the indicator is equal to 1. The levels in this data are mutually exclusive, so only one level from each feature can occur in one observation. Therefore, it is not necessary to make an indicator variable for every level contained in a feature. The level that is left out is the assume baseline, as it is the only other option given the other indicator variables from that feature are 0. 
 ```{r}
   adult$race_white <- adult$race_black <- adult$race_as.pac.is <-
   adult$race_am.in.esk <- adult$wc_gov <-  adult$wc_self <- adult$wc_priv <-
@@ -69,6 +71,7 @@ library(knitr)
 ```  
 
 ### MINIMAX TRANSFORM THE CONTINUOUS VARIABLES
+#### Standardization is necessesary to use continuous variables as inputs for neural networks. Here we use mix-max normalization to transform the continuous data into values between 0 and 1. Normalization is necessary because otherwise, the model would favor the larger values when determining weights for each node in the model during back propogation. Non-normalized data would lead to inaccurate predictions on new data. 
 ```{r}
   adult$age_mm <- (adult$age - min(adult$age))/(max(adult$age)-min(adult$age))
   adult$edu.num_mm <- (adult$education.num - min(adult$education.num))/
@@ -83,6 +86,7 @@ library(knitr)
 ```
 
 ### RUN THE NEURAL NET
+### This neural net aims to predict whether or not the income of a new adult is greater than $50k. The weights are the parameters being fit to optimize the model. Unless a random seed is set, the weights are going to be different everyt time we run this code. This is because the fitting/training process may start from a different point eveyr time. This particular network has an input layer, a hidden layer, and an output layer, the hidden layer has 8 nodes. R defaults to using a log-linear activation function within each of these nodes. There is only 1 ouput node. 
 ```{r}
   #install.packages("nnet")
   library(nnet) # Requires package nnet
@@ -97,6 +101,7 @@ library(knitr)
 ### THE CONFUSION MATRIX
   # After using the C5.0 package, the confusion matrix is included in the output of summary()
   # See Chapter 11 for data preparation and code to implement the C5.0 package
+#### The confusion matrix is a good way visualize the performance of the model in a table. A confusion matrix compares the predicted results to the actual results. This gives us useful information to calculate metrics such as True Positive Rate, False Positive Rate, Accuracy, Precision, and F-Score. These metrics are ways to determine the success of the algorithm depending on the contexts of the problem.  
 
 ### ADD COSTS TO THE MODEL
 ```{r}
