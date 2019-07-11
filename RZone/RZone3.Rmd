@@ -52,7 +52,7 @@ knn
 ```
 
 ### Calculate the Euclidean distance
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # Requires package "fields"
 library(fields)
 
@@ -89,7 +89,8 @@ yhat_new
 ### CLASSFIY RISK EXAMPLE: PREP THE DATA
 ```{r}
 #	Read in the ClassifyRisk dataset
-risk <- read.csv(file = "classifyrisk.txt", stringsAsFactors=FALSE, header=TRUE, sep="\t")
+setwd("~/IMGT680")
+risk <- read.csv(file = "ClassifyRisk.txt", stringsAsFactors=FALSE, header=TRUE, sep="\t")
 
 # Table <link	href="#urn:x-wiley:9783527333455:xml-component:c10:c10-tbl0005"/> contains Records 51, 65, 79, 87, 124, 141, 150, 162, 163
 ```
@@ -131,7 +132,8 @@ knn2
 
 ### Read in and prepare the data
 ```{r}
-adult <- read.csv(file = "adult.txt", stringsAsFactors = TRUE, sep = "\t")
+setwd("~/IMGT680")
+adult <- read.csv(file = "adult.txt", stringsAsFactors = TRUE)
 ```
 
 ### Collapse some of the categories by giving them the same factor label
@@ -159,7 +161,7 @@ print(cartfit)
 ```
 
 ### Plot the decision tree
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # Requires package “rpart.plot”
 library("rpart.plot")
 rpart.plot(cartfit, main = "Classification Tree")
