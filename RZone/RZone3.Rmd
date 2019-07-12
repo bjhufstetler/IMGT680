@@ -51,6 +51,8 @@ knn <- knn(data, new, cl = trueclass, k = 3, prob = TRUE)
 knn
 ```
 
+The predicted class is medium with a 33% probability.
+
 ### Calculate the Euclidean distance
 ```{r, message=FALSE, warning=FALSE}
 # Requires package "fields"
@@ -128,6 +130,8 @@ knn2 <- knn(train = risk2[,c(1,3,4)], test = new2, cl = cll, k = 3)
 knn2
 ```
 
+The results from this KNN model predict the specific observation to be a good risk.
+
 # Chapter 11
 
 ### Read in and prepare the data
@@ -167,6 +171,8 @@ library("rpart.plot")
 rpart.plot(cartfit, main = "Classification Tree")
 ```
 
+The decision tree has 6 end nodes, and starts by splitting first on marital status. If yes to the split, then it only splits one more time with almost half the observations going to capital gain < 0.91. If no to marital status then three more splits are accomplished in order to classify the observations.
+
 ### C5.0
 ```{r}
 # Requires package “C50”
@@ -178,8 +184,12 @@ c50fit1 <- C5.0(x, y)
 summary(c50fit1)
 ```
 
+The first thing to notice is the error percent, which is 13.1 %. Of the 9 variables used, only 4 seemed to be of high importance. These were capital gain, marital status, capital loss, and education num. All in order of decreasing importance, but all four variables have higher than 90% importance. The fifth highest is hours per week, which had a importance score of 52.65 %.
+
 ### C5.0 - Pruned
 ```{r}
 c50fit2 <- C5.0(x, y, control = C5.0Control(CF=.1))
 summary(c50fit2)
 ```
+
+While the error rate increased to 13.8 % after pruning some of the tree, it is not a large increase in the error rate. Especially considering the speed of the calculation dropped from 0.3 to 0.2 seconds. While still increadibly fast, it still represents a 33% reduction in computation time. As far as important variables, nothing drastic changed in the top four reported previously, and they are still above 90%. What's interesting is the fifth most important variable, hours per week, dropped to 10.36% which is a drastic redution from the previous model.
