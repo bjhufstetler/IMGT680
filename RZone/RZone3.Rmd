@@ -44,7 +44,7 @@ trueclass <- c("Dark", "Medium", "Light")
 ```
 
 ### Run KNN
-```{r}
+```{r, warning=FALSE}
 # Requires package “class”
 library(class)
 knn <- knn(data, new, cl = trueclass, k = 3, prob = TRUE)
@@ -141,7 +141,7 @@ adult <- read.csv(file = "adult.txt", stringsAsFactors = TRUE)
 ```
 
 ### Collapse some of the categories by giving them the same factor label
-```{r}
+```{r, warning=FALSE}
 levels(adult$marital.status)
 levels(adult$workclass)
 levels(adult$marital.status)[2:4] <- "Married" 
@@ -174,7 +174,7 @@ rpart.plot(cartfit, main = "Classification Tree")
 The decision tree has 6 end nodes, and starts by splitting first on marital status. If yes to the split, then it only splits one more time with almost half the observations going to capital gain < 0.91. If no to marital status then three more splits are accomplished in order to classify the observations.
 
 ### C5.0
-```{r}
+```{r, warning=FALSE}
 # Requires package “C50”
 library("C50")
 names(adult) 
