@@ -107,15 +107,13 @@ risk2$married.I <- ifelse(risk2$marital_status=="married", 1, 0)
 risk2$single.I <- ifelse(risk2$marital_status=="single", 1, 0)
 
 # Remove the two original categorical variables from the set
-risk2 <- risk2[, -2];
-risk2 <- risk2[, -2];
+risk2 <- risk2[, -c(2,3)];
 
 # Pull an observation out to be the test sameple and repeat the above process
 new2	<- risk[163, c(5, 1, 4)] 
 new2$married.I <- 1;
 new2$single.I <- 0; 
-new2 <- new2[, -2];
-new2 <- new2[, -2];
+new2 <- new2[, -c(2,3)];
 
 # Establish response label
 cll <- c(risk2[, 2])

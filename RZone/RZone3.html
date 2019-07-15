@@ -1742,15 +1742,13 @@ risk2$married.I &lt;- ifelse(risk2$marital_status==&quot;married&quot;, 1, 0)
 risk2$single.I &lt;- ifelse(risk2$marital_status==&quot;single&quot;, 1, 0)
 
 # Remove the two original categorical variables from the set
-risk2 &lt;- risk2[, -2];
-risk2 &lt;- risk2[, -2];
+risk2 &lt;- risk2[, -c(2,3)];
 
 # Pull an observation out to be the test sameple and repeat the above process
 new2    &lt;- risk[163, c(5, 1, 4)] 
 new2$married.I &lt;- 1;
 new2$single.I &lt;- 0; 
-new2 &lt;- new2[, -2];
-new2 &lt;- new2[, -2];
+new2 &lt;- new2[, -c(2,3)];
 
 # Establish response label
 cll &lt;- c(risk2[, 2])</code></pre>
@@ -1851,7 +1849,7 @@ summary(c50fit1)</code></pre>
 ## C5.0.default(x = x, y = y)
 ## 
 ## 
-## C5.0 [Release 2.07 GPL Edition]      Sun Jul 14 11:47:38 2019
+## C5.0 [Release 2.07 GPL Edition]      Mon Jul 15 14:11:39 2019
 ## -------------------------------
 ## 
 ## Class specified by attribute `outcome'
@@ -2057,7 +2055,7 @@ summary(c50fit2)</code></pre>
 ## C5.0.default(x = x, y = y, control = C5.0Control(CF = 0.1))
 ## 
 ## 
-## C5.0 [Release 2.07 GPL Edition]      Sun Jul 14 11:47:39 2019
+## C5.0 [Release 2.07 GPL Edition]      Mon Jul 15 14:11:40 2019
 ## -------------------------------
 ## 
 ## Class specified by attribute `outcome'
