@@ -102,11 +102,30 @@ library(knitr)
   # After using the C5.0 package, the confusion matrix is included in the output of summary()
   # See Chapter 11 for data preparation and code to implement the C5.0 package
 #### The confusion matrix is a good way visualize the performance of the model in a table. A confusion matrix compares the predicted results to the actual results. This gives us useful information to calculate metrics such as True Positive Rate, False Positive Rate, Accuracy, Precision, and F-Score. These metrics are ways to determine the success of the algorithm depending on the contexts of the problem.  
+### Chapter 11 data prep
+```{r}
+  setwd("~/IMGT680")
+  adult <- read.csv(file = "adult.txt", stringsAsFactors=TRUE)
+  
+  #Collapse some of the categories by giving them the same factor label
+  levels(adult$marital.status);levels(adult$workclass)
+  levels(adult$marital.status)[2:4]<-"Married"
+  levels(adult$workclass)[c(2,3,8)]<- "Gov"
+  levels(adult$workclass)[c(5,6)] <- "Self"
+  levels(adult$marital.status); levels(adult$workclass)
+  
+  #add columns with normalized data
+  adult$age.z <- (adult$age - mean(adult$age))/sd(adult$age)
+  adult$education.num.z <- (adult$education.num - mean(adult$education.num))/sd(adult$education.num)
+  adult$capital.gain.z<- (adult$capital.gain - mean(adult$capital.gain))/sd(adult$capital.gain)
+  adult$capital.loss.z <- (adult$capital.loss - mean(adult$capital.loss))/sd(adult$capital.loss)
+  adult$hours.per.week.z <- (adult$hours.per.week - mean(adult$hours.per.week))/ sd(adult$hours.per.week)
+                                                                    
+```
 
 ### ADD COSTS TO THE MODEL
 ```{r}
   #install.packages("C50")
-  library("C50")
   
   #After data preparation from Chapter 11
   x <- adult[,c(2,6, 9, 10, 16, 17, 18, 19, 20)]
@@ -115,7 +134,9 @@ library(knitr)
   # Without weights:
   c50fit <- C5.0(x, y, control = C5.0Control(CF=.1))
   summary(c50fit)
-  
+```
+
+```{r}
   # With weights:
   costm <- matrix(c(1, 2, 1, 1), byrow = FALSE, 2, 2)
   c50cost <- C5.0(x, y, costs = costm, control = C5.0Control(CF=.1))
