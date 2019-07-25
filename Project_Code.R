@@ -38,8 +38,8 @@ require(rgdal)
 require(sp)
 
 #read the shape files
-datadir <- "./Bos_neighborhoods_new/"
-neighbs <- readOGR(dsn=datadir, layer="Bos_neighborhoods_new")
+datadir <- "./Boston_Neighborhoods/"
+neighbs <- readOGR(dsn=datadir, layer="Boston_Neighborhoods")
 
 #prepare for plotting
 neighbs <- spTransform(neighbs, CRS("+proj=longlat +datum=WGS84"))
@@ -53,3 +53,8 @@ Bos_map2 + geom_polygon(data=neighbs_plt, aes(x=long, y=lat, group=group), alpha
 # plot neighborhoods and crimes
 Bos_map2 + geom_polygon(data=neighbs_plt, aes(x=long, y=lat, group=group), alpha=0.3, color="black", fill='red') +geom_point(aes(x=x, y=y), data=drug_crimes, size=2, alpha=0.2, color="black")+ 
   ggtitle("Geographic Extent of Boston with Drug Charges (2011-2014) Overlay")
+
+
+
+
+
