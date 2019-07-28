@@ -2,24 +2,17 @@
 title: "R Zone 4: Chapter 12 and 15"
 author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 date: "5 August 2019"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
-  word_document: default
-  hmtl_document: default
-geometry: margin = 1in
-header-includes:
-- \usepackage{fancyhdr}
-- \pagestyle{fancy}
-- \fancyfoot[CO,CE]{Forrest - Page \thepage}
-fontsize: 11pt
-fontfamily: mathpazo
+output: 
+  tufte::tufte_html:
+    keep_md: true
+    # highlight: tango
+  # html_document:
+  #   theme: journal
+  # tufte_handout:
+    # highlight: tango
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
 ```
 
 # Chapter 12
@@ -86,7 +79,7 @@ library(knitr)
 ```
 
 ### RUN THE NEURAL NET
-### This neural net aims to predict whether or not the income of a new adult is greater than $50k. The weights are the parameters being fit to optimize the model. Unless a random seed is set, the weights are going to be different everyt time we run this code. This is because the fitting/training process may start from a different point eveyr time. This particular network has an input layer, a hidden layer, and an output layer, the hidden layer has 8 nodes. R defaults to using a log-linear activation function within each of these nodes. There is only 1 ouput node. 
+#### This neural net aims to predict whether or not the income of a new adult is greater than $50k. The weights are the parameters being fit to optimize the model. Unless a random seed is set, the weights are going to be different everyt time we run this code. This is because the fitting/training process may start from a different point eveyr time. This particular network has an input layer, a hidden layer, and an output layer, the hidden layer has 8 nodes. R defaults to using a log-linear activation function within each of these nodes. There is only 1 ouput node. 
 ```{r}
   #install.packages("nnet")
   library(nnet) # Requires package nnet
@@ -100,8 +93,11 @@ library(knitr)
   
 ### THE CONFUSION MATRIX
   # After using the C5.0 package, the confusion matrix is included in the output of summary()
+  
   # See Chapter 11 for data preparation and code to implement the C5.0 package
-#### The confusion matrix is a good way visualize the performance of the model in a table. A confusion matrix compares the predicted results to the actual results. This gives us useful information to calculate metrics such as True Positive Rate, False Positive Rate, Accuracy, Precision, and F-Score. These metrics are ways to determine the success of the algorithm depending on the contexts of the problem.  
+  
+#### The confusion matrix is a good way visualize the performance of the model in a table. A confusion matrix compares the predicted results to the actual results. This gives us useful information to calculate metrics such as True Positive Rate, False Positive Rate, Accuracy, Precision, and F-Score. These metrics are ways to determine the success of the algorithm depending on the contexts of the problem. 
+
 ### Chapter 11 data prep
 ```{r}
   setwd("~/IMGT680")
@@ -126,7 +122,7 @@ library(knitr)
 ### ADD COSTS TO THE MODEL
 The root node pslit is considered to indicate the most important single variable for classifying income. We see that without weights, Capital Gains maximizes the C5.0. informtion gain criterion. The next decision node is on marital status, married or non-marriedn and then normalized capital loss no matter the marital status. After capital loss, the most important variables do not split identically anymore. In predicting income, it is not detrimental to misclassify some observations wrong, so accuracy would be a good model evaluaiton metric. according to our confusion matrix, the accuracy for this model is 86.2. 
 ```{r}
-  #install.packages("C50")
+  install.packages("C50")
   
   #After data preparation from Chapter 11
   x <- adult[,c(2,6, 9, 10, 16, 17, 18, 19, 20)]

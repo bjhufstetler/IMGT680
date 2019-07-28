@@ -2,24 +2,17 @@
 title: "R Zone 5: Chapter 19 and 20"
 author: " Brandon Hufstetler, Garrett Alarcon, Jinan Andrews, Anson Cheng, Nick Forrest, and Nestor Herandez"
 date: "12 August 2019"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
-  word_document: default
-  hmtl_document: default
-geometry: margin = 1in
-header-includes:
-- \usepackage{fancyhdr}
-- \pagestyle{fancy}
-- \fancyfoot[CO,CE]{Forrest - Page \thepage}
-fontsize: 11pt
-fontfamily: mathpazo
+output: 
+  tufte::tufte_html:
+    keep_md: true
+    # highlight: tango
+  # html_document:
+  #   theme: journal
+  # tufte_handout:
+    # highlight: tango
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
 ```
 
 # Chapter 19
