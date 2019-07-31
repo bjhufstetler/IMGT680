@@ -49,3 +49,30 @@ Bos_map2 + geom_polygon(data=neighbs_plt, aes(x=long, y=lat, group=group), alpha
 Bos_map2 + geom_polygon(data=neighbs_plt, aes(x=long, y=lat, group=group), alpha=0.3, color="black", fill='red') +geom_point(aes(x=x, y=y), data=drug_crimes, size=2, alpha=0.2, color="black")+ 
   ggtitle("Geographic Extent of Boston with Drug Charges (2011-2014) Overlay")
 
+
+p <- par(mfcol = c(4,3),
+         pty = "s")
+for(j in 10:12){
+  data.table <- table(data[c(3,j)])
+  row.names(data.table) <- levels(data$OFFENSE_CODE_GROUP)
+  x <- names(data)[j]
+for(i in 1:4){
+  data.plot = rbind(1:12,data.table[i,]) 
+  name = row.names(data.table)[i]
+  barplot(data.plot,
+          col = "blue",
+          ylab = "Counts",
+          xlab = x,
+          main = paste("Comparison Bar Chart: Monthly Occurences of",name))
+}
+}
+
+
+
+
+
+
+
+
+
+
