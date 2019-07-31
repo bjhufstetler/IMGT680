@@ -1,7 +1,7 @@
 # Run this command once to link to my google API account (please do not share this key)
   #register_google(key = "AIzaSyAxPCoK5JzfwK5A-7tvfYrk2L7Aiz99tZA", write=TRUE)
 
-setwd("~/IMGT680")
+setwd("~/IMGT680/Project")
 load("BostonCrimeData2015-2018.RData")
 
 # Convert day of week to integer w/ Monday == 1
