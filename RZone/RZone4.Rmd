@@ -122,8 +122,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ### ADD COSTS TO THE MODEL
 The root node pslit is considered to indicate the most important single variable for classifying income. We see that without weights, Capital Gains maximizes the C5.0. informtion gain criterion. The next decision node is on marital status, married or non-marriedn and then normalized capital loss no matter the marital status. After capital loss, the most important variables do not split identically anymore. In predicting income, it is not detrimental to misclassify some observations wrong, so accuracy would be a good model evaluaiton metric. according to our confusion matrix, the accuracy for this model is 86.2. 
 ```{r}
-  install.packages("C50")
-  
+  #install.packages("C50")
+  library(C50)
   #After data preparation from Chapter 11
   x <- adult[,c(2,6, 9, 10, 16, 17, 18, 19, 20)]
   y <- adult$income
@@ -133,7 +133,7 @@ The root node pslit is considered to indicate the most important single variable
   summary(c50fit)
 ```
 When adding weights, we find that all of the variable orders from using no weights stay the same, but race and workclass are now included in the attribute usage. Adding weights actually increase the overall error rate. Thus, our accuracy decreased from the previous model.
-```{r}
+```{r, warning=FALSE}
   # With weights:
   costm <- matrix(c(1, 2, 1, 1), byrow = FALSE, 2, 2)
   c50cost <- C5.0(x, y, costs = costm, control = C5.0Control(CF=.1))
