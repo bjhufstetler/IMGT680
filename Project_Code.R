@@ -13,17 +13,19 @@ crime_latlong <- cbind(data, lat_long)
 
 head(lat_long) #much better
 
-drug_crimes <- crime_latlong[crime_latlong$OFFENSE_DESCRIPTION == "STALKING",]
 
 # plot on a map
 #install.packages("ggmap")
 require(ggmap)
 map.center <- geocode("Boston, MA")
 Bos_map <- qmap(c(lon=map.center$lon, lat=map.center$lat), zoom=12)
-g <- Bos_map + geom_point(aes(x=x, y=y), data=drug_crimes, size=3, alpha=0.2, color="red") + 
-  ggtitle("Drug Charges in Boston by Location (2015-2018)")
-print(g)
 
+for(i in as.vector(unique(data$OFFENSE_CODE_GROUP))){
+drug_crimes <- crime_latlong[crime_latlong$OFFENSE_CODE_GROUP == i,]
+g <- Bos_map + geom_point(aes(x=x, y=y), data=drug_crimes, size=3, alpha=0.2, color="red") + 
+                          ggtitle(paste(i, " in Boston by Location (2015-2018)"))
+ print(g)
+}
 
 #load R geo packages
 #install.packages("rgdal")
@@ -46,8 +48,4 @@ Bos_map2 + geom_polygon(data=neighbs_plt, aes(x=long, y=lat, group=group), alpha
 # plot neighborhoods and crimes
 Bos_map2 + geom_polygon(data=neighbs_plt, aes(x=long, y=lat, group=group), alpha=0.3, color="black", fill='red') +geom_point(aes(x=x, y=y), data=drug_crimes, size=2, alpha=0.2, color="black")+ 
   ggtitle("Geographic Extent of Boston with Drug Charges (2011-2014) Overlay")
-
-
-
-
 
