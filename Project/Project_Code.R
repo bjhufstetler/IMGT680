@@ -73,7 +73,95 @@ missing[i] <- sum(is.na(data[i]))
 }
 
 
+######### 
+# Category Reduction
+#########
+
+crimes.violent <- c("Simple Assault", "Ballistics", "Aggravated Assault", "Firearm Violations", "Homicide", "Explosives",
+                    "Criminal Harassment", "Biological Threat", "Manslaughter")
+crimes.traffic <- c("Towed", "Investigate Property", "Motor Vehicle Accident Response", "License Plate Related Incidents",
+                    "Operating Under the Influence", "License Violation", "Evading Fare")
+crimes.theft <- c("Larceny", "Auto Theft", "Robbery", "Property Lost", "Larceny From Motor Vehicle", 
+                  "Residential Burglary", "Property Found", "Other Burglary", "Auto Theft Recovery", "Commercial Burglary",
+                  "HOME INVASION", "Recovered Stolen Property", "Burglary - No Property Taken")
+crimes.drugsex <- c("Drug Violation", "Prostitution", "HUMAN TRAFFICKING", "HUMAN TRAFFICKING - INVOLUNTARY SERVITUDE")
+crimes.money <- c("Fraud", "Counterfeiting", "Confidence Games", "Embezzlement", "Gambling")
+crimes.medical <- c("Medical Assistance")
+crimes.other <- c("Vandalism", "Verbal Disputes", "Fire Related Reports", "Other", "Assembly or Gathering Violations",
+                  "Restraining Order Violations", "Violations", "Harassment", "Police Service Incidents",
+                  "Warrant Arrests", "Disorderly Conduct", "Property Related Damage", "Missing Person Reported", 
+                  "Investigate Person", "Arson", "Bomb Hoax", "Harbor Related Incidents", "Liquor Violation",
+                  "Firearm Discovery", "Landlord/Tenant Disputes", "Missing Person Located", "Service", "Search Warrants",
+                  "Offenses Against Child / Family", "Prisoner Related Incidents", "Phone Call Complaints", "Aircraft",
+                  "INVESTIGATE PERSON")
+for(i in 141898:319073){
+  if (data$OFFENSE_CODE_GROUP[i] %in% crimes.violent){
+    data$OFFENSE_CATEGORY[i] = "Violent"  
+  }else if(data$OFFENSE_CODE_GROUP[i] %in% crimes.traffic){
+    data$OFFENSE_CATEGORY[i] = "Traffic"
+  }else if(data$OFFENSE_CODE_GROUP[i] %in% crimes.theft){
+    data$OFFENSE_CATEGORY[i] = "Theft"
+  }else if(data$OFFENSE_CODE_GROUP[i] %in% crimes.drugsex){
+    data$OFFENSE_CATEGORY[i] = "Drugsex"
+  }else if(data$OFFENSE_CODE_GROUP[i] %in% crimes.money){
+    data$OFFENSE_CATEGORY[i] = "Money"
+  }else if(data$OFFENSE_CODE_GROUP[i] %in% crimes.medical){
+    data$OFFENSE_CATEGORY[i] = "Medical"
+  }else if(data$OFFENSE_CODE_GROUP[i] %in% crimes.other){
+    data$OFFENSE_CATEGORY[i] = "Other"
+  }
+  print(i)
+}
+table(data$OFFENSE_CATEGORY)*100/319073
+data$OFFENSE_CATEGORY <- as.factor(data$OFFENSE_CATEGORY)
 
 
 
+data.month <- table(data[c(18,10)])
+data.week <- table(data[c(18,11)])
+data.hour <- table(data[c(18,12)])
+row.names(data.month) <- unique(data$OFFENSE_CATEGORY)
+row.names(data.week) <- unique(data$OFFENSE_CATEGORY)
+row.names(data.hour) <- unique(data$OFFENSE_CATEGORY)
+x.month <- names(data$MONTH)
+x.week <- names(data$DAY_OF_WEEK)
+x.hour <- names(data$HOUR)             
+for(i in 1:7){
+  par(mfcol = c(2,2),
+      pty = "s")
+  
+  plot.month = data.month[i,]
+  name = row.names(data.month)[i]
+  barplot(plot.month,
+          #col = "blue",
+          ylab = "Counts",
+          xlab = x.month,
+          main = paste("Monthly",name," crimes"))
+  
+  plot.hour = data.hour[i,]
+  name = row.names(data.hour)[i]
+  barplot(plot.hour,
+          #col = "blue",
+          ylab = "Counts",
+          xlab = x.week,
+          main = paste("Hourly ",name," Crimes"))
+  
+  plot.week = data.week[i,]
+  name = row.names(data.week)[i]
+  barplot(plot.week,
+          #col = "blue",
+          ylab = "Counts",
+          xlab = x.hour,
+          main = paste("Daily ",name," Crimes"))
+}
+                     
+
+                                 
+
+                             
+
+                      
+
+
+    
 
