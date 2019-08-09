@@ -44,7 +44,7 @@
   for (i in 1:length(churn$Int.l.Plan)) {
     if (churn$Int.l.Plan[i]=="yes") IntPlan[i] = 1
     if (churn$VMail.Plan[i]=="yes") VMPlan[i] = 1
-    if (churn$Churn[i] == "True") Churn[i] = 1
+    if (churn$Churn[i] == "True.") Churn[i] = 1
   }
   AcctLen <- (churn$Account.Length - mean(churn$Account.Length)) / sd(churn$Account.Length)
   VMMess <- (churn$VMail.Message - mean(churn$VMail.Message)) / sd(churn$VMail.Message)

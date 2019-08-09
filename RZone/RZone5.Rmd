@@ -24,6 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### SINGLE-LINKAGE CLUSTERING
+#### In the dendrogram below, the height of each linkage shows the distance between the groups it is linking. For example, There is a linkage connecting the group (1,2,3) to (4,5,6). The height of the linkage is 6. Between the two groups, the two closest neighbors (because we are using the 'single' method) are 3 (9) and 4 (15) having a distance of 6. The single linkage method is based on the minimum distance between any record in cluster A and any record in cluster B.
 ```{r}
   agn <- agnes(data, diss = FALSE, stand = FALSE, method = "single")
   
@@ -36,6 +37,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### COMPLETE-LINKAGE CLUSTERING
+#### The complete linkage method is based on the maximum distance between any record in cluster A and cluster B. Notice how observation 7 joins the (8,9) cluster here as opposed to the (1,2,3,4,5,6) cluster as seen in the single linkage method.
 ```{r}
   agn_complete <- agnes(data, diss = FALSE, stand = FALSE, method = "complete")
   
@@ -48,9 +50,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```  
 
 ### K-MEANS CLUSTERING
+#### With k-means clustering, a number of centroids is predetermined and k records are randomly assigned as a centroid. For each record, the nearest cluster centroid is found and assign it to that cluster. Recalculate the cluster centroids. Continue doing this until convergence or termination. In the example here, there are 8 data points assigned to 2 clusters. The centroid locations are shown along with the sum of squares for each cluster.
 ```{r}
   # Create the data matrix from Table 10.1
-  m <- matrix(c(1,3,3,3,4,3,5,3, 1,2,4,2,1,1,2,1), byrow=TRUE, ncol = 2)
+  m <- matrix(c(1,3,3,3,4,3,5,3,1,2,4,2,1,1,2,1), byrow=TRUE, ncol = 2)
   km <- kmeans(m, centers = 2)
   km
 ```
@@ -58,6 +61,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Chapter 20
 
 ### OPEN ‘KOHONEN’ PACKAGE. READ IN AND PREPARE THE DATA
+#### The first step taken here is to create indicator variables for International Plan, Voice Mail Plan, and Churn variables, then normalize the data. 
 ```{r}
   setwd("~/IMGT680")
   #install.packages("kohonen")
@@ -67,7 +71,7 @@ knitr::opts_chunk$set(echo = TRUE)
   for (i in 1:length(churn$Int.l.Plan)) {
     if (churn$Int.l.Plan[i]=="yes") IntPlan[i] = 1
     if (churn$VMail.Plan[i]=="yes") VMPlan[i] = 1
-    if (churn$Churn[i] == "True") Churn[i] = 1
+    if (churn$Churn[i] == "True.") Churn[i] = 1
   }
   AcctLen <- (churn$Account.Length - mean(churn$Account.Length)) / sd(churn$Account.Length)
   VMMess <- (churn$VMail.Message - mean(churn$VMail.Message)) / sd(churn$VMail.Message)
@@ -79,6 +83,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### RUN THE ALGORITHM TO GET A 3X2 KOHONEN NETWORK
+#### A kohonen network is a type of self-organizing map, which represents a special class of neural networks. The goal of self-organizing maps is to convert a complex high-dimensional input signal into a simpler low-dimensional discrete map. They exhibit three characteric processes: Competition, Cooperation, and Adaptation. The cluster contents shown below illustrate the component make-up of each cluster. The cluster counts show the records in each cluster. Each cluster is then plotted with a jitter function to show the makeup of each cluster. The observations with a voice mail plan are colored red. Finally, a table showing the percent of churners in each cluster is created.
 ```{r}
   # Make the variables into one matrix, and make sure the records are the rows
   dat <- t(rbind(IntPlan, VMPlan, AcctLen, VMMess, DayMin, EveMin, NiteMin, IntMin, CSC))

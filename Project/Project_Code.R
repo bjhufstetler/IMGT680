@@ -77,7 +77,7 @@ missing[i] <- sum(is.na(data[i]))
 # Category Reduction
 #########
 
-crimes.violent <- c("Simple Assault", "Ballistics", "Aggravated Assault", "Firearm Violations", "Homicide", "Explosives",
+crimes.violent <- c("Arson", "Simple Assault", "Ballistics", "Aggravated Assault", "Firearm Violations", "Homicide", "Explosives",
                     "Criminal Harassment", "Biological Threat", "Manslaughter")
 crimes.traffic <- c("Towed", "Investigate Property", "Motor Vehicle Accident Response", "License Plate Related Incidents",
                     "Operating Under the Influence", "License Violation", "Evading Fare")
@@ -86,11 +86,11 @@ crimes.theft <- c("Larceny", "Auto Theft", "Robbery", "Property Lost", "Larceny 
                   "HOME INVASION", "Recovered Stolen Property", "Burglary - No Property Taken")
 crimes.drugsex <- c("Drug Violation", "Prostitution", "HUMAN TRAFFICKING", "HUMAN TRAFFICKING - INVOLUNTARY SERVITUDE")
 crimes.money <- c("Fraud", "Counterfeiting", "Confidence Games", "Embezzlement", "Gambling")
-crimes.medical <- c("Medical Assistance")
-crimes.other <- c("Vandalism", "Verbal Disputes", "Fire Related Reports", "Other", "Assembly or Gathering Violations",
+crimes.medical <- c("Fire Related Reports", "Medical Assistance")
+crimes.other <- c("Vandalism", "Verbal Disputes",  "Other", "Assembly or Gathering Violations",
                   "Restraining Order Violations", "Violations", "Harassment", "Police Service Incidents",
                   "Warrant Arrests", "Disorderly Conduct", "Property Related Damage", "Missing Person Reported", 
-                  "Investigate Person", "Arson", "Bomb Hoax", "Harbor Related Incidents", "Liquor Violation",
+                  "Investigate Person",  "Bomb Hoax", "Harbor Related Incidents", "Liquor Violation",
                   "Firearm Discovery", "Landlord/Tenant Disputes", "Missing Person Located", "Service", "Search Warrants",
                   "Offenses Against Child / Family", "Prisoner Related Incidents", "Phone Call Complaints", "Aircraft",
                   "INVESTIGATE PERSON")
