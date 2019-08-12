@@ -25,7 +25,7 @@ library(knitr)
 # Chapter 21
 
 ### OPEN REQUIRED PACKAGE, READ IN THE DATA
-#### Commentary: Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount.
+#### Commentary: Note that birch is no longer supported on CRAN and must be installed through an archived version. The approval and interest were removed from the classification training data because the interest is perfectly correlated with the requested amount. Also, the original R-Zone code says to use 5000 records but is scripted to only load in 1000 values. The correction was made below.
 ```{r echo=T, results='hide', warning=FALSE, message=FALSE}
   #install.packages("birch")
   setwd("~/IMGT680")
@@ -38,6 +38,7 @@ library(knitr)
 ```
 
 ### BIRCH CLUSTERING
+#### Commentary: The following snippet first creates the CF tree (radius 1000) using the birch() command, then uses kmeans to classify the birch clusters, with 2 centroids.
 ```{r echo=T, results='hide'}
   b1 <- birch(x = train, radius=1000) # Create the Birch tree
   
@@ -46,19 +47,19 @@ library(knitr)
 ```
 
 ### PLOT THE RESULTS
-#### Commentary: Since only one value of k is selected (2), we cannot make a comparison to different models and BIRCH is unable to suggest a k. The clusters shown below 
+#### Commentary: Since only one value of k is selected (2), we cannot make a comparison to different models and BIRCH is unable to suggest a k. The CF tree clearly splits the data into two distinct categories when viewing the loan amount vs FICO score.
 ```{r}
   par(mfrow=c(2,2))
   plot(b1[,c(2,3)], col = kb1$clust$sub)
+  plot(train[,c(2,3)], col = kb1$clust$sub, pch = 16)
   plot(jitter(train[,c(1,3)], .1), col = kb1$clust$sub, pch = 16)
   plot(jitter(train[,c(1,2)], .1), col = kb1$clust$sub, pch = 16)
-  plot(train[,c(2,3)], col = kb1$clust$sub, pch = 16)
 ```
 
 # Chapter 22
 
 ### READ IN AND PREPARE THE DATA
-#### Commentary: Min-max normalization used (from chapter 2)
+#### Commentary: Iris data used here. Min-max normalization applied to normalize all variables (from chapter 2)
 ```{r echo=T, results='hide'}
   i.data <- iris # Iris is a built-in dataset
   # Min-max normalization
@@ -73,6 +74,7 @@ library(knitr)
 ```
 
 ### SILHOUETTE VALUES
+#### Commentary: Silhouette values provide a combined measure of cohesion and separation. A positive value indicates that the assignment is good, with higher values being better than lower values. A value that is close to zero is considered to be a weak assignment, as the observation could have been assigned to the next closest cluster with limited negative consequence. A negative silhouette value is considered to be misclassified, as assignment to the next closest cluster would have been better. A high average silhouette value (>0.5) provides good evidence of the reality of the clusters in the data. A medium average value (0.25-0.5) provides some evidence of the same and hopefully domain-specific knowledge can be brought to bear to support the reality of the clusters. A low average silhouette value (<0.25) provides scant evidence of cluster reality. In the following plots, we see that the average silhouette value when k=3 is 0.5 (not compelling) and 2 of the clusters have an average value of 0.4 (yikes!). The average silhouette value when k=2 is 0.63 (much better) and both clusters have an average value of >0.5. 
 ```{r}
   # Requires package 'cluster'
   #install.packages("cluster")
@@ -94,6 +96,7 @@ library(knitr)
 ```
 
 ### PLOT SILHOUETTE VALUES
+#### Commentary: The plots here show which observations have an extremely low (<0.33) silhouette value, shown in black. When k=3 there are 32 such observations but when k=2 there are only 6.
 ```{r}
   silval1 <- ifelse(sil1[,3] <= 0.33, 0, 1)
   plot(i.data$PL, i.data$PW, col = silval1+1,
@@ -113,6 +116,7 @@ library(knitr)
 ```
 
 ### PSEUDO-F
+#### Commentary: The pseudo-F for k=3 is 359.85 and the pseudo-F for k=2 is 354.37. Since the p-value for k=3 goes out to the 57th decimal place while the p-value for k=2 only goes out to the 41st decimal place, the pseudo-F statistic prefers k=3. But seriously, are they really so different at that point?
 ```{r, warning=FALSE, message=FALSE}
   # Requires package 'clusterSim'
   #install.packages("clusterSim")
@@ -125,6 +129,7 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—PREPARE THE DATA
+#### Commentary: Here we read in the loan data and separate out the response variable (APPROVAL) in column 1. Next we take the k-means clusters for k=3 for both the testing and training data.
 ```{r echo=T, results='hide'}
   setwd("~/IMGT680")
   loan.test <- read.csv(file="Loans_Test.csv", header = TRUE)
@@ -136,6 +141,7 @@ library(knitr)
 ```
 
 ### CLUSTER VALIDATION—VARIABLE SUMMARIES BY CLUSTER
+#### Commentary: Knowing the means and standard deviations allows us to perform a t-test to determine if the clusters are significantly independent. While these may not work well for large sample sizes, it is always recommended to report the difference in variable means between partitions so that the client (or someone famailiar with the data) can render judgement on whether the difference is of practical significance. The following table only lays out the mean and standard deviation for the testing and training sets' 3 clusters for the Debt-to-Income Ratio. We can see that the means are all 2-3 DIR apart.
 ```{r echo=T}
   clust.sum <- matrix(0.0, ncol = 3, nrow = 4)
   colnames(clust.sum) <- c("Cluster 1", "Cluster 2", "Cluster 3")
