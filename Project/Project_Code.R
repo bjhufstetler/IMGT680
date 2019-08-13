@@ -17,11 +17,11 @@ require(ggmap)
 map.center <- geocode("Boston, MA")
 Bos_map <- qmap(c(lon=(map.center$lon-0.025), lat=(map.center$lat-.045)), zoom=12)
 
-for(i in as.vector(unique(data$OFFENSE_CODE_GROUP))){
-  print(i)
-  crimes <- data[data$OFFENSE_CODE_GROUP == i,]
-  p <- Bos_map + geom_point(aes(x=Long, y=Lat), data=crimes, size=3, alpha=0.2, color="red") + 
-                            ggtitle(paste(i, " in Boston by Location (2015-2018)"))
+for(i in as.vector(unique(data$OFFENSE_CATEGORY))){
+  crimes <- data[data$OFFENSE_CATEGORY == i,]
+  p <- Bos_map + geom_point(aes(x=Long, y=Lat, colour=factor(HOUR)), 
+                            data=crimes, size=3, alpha=0.2) + 
+                  ggtitle(paste(i, " in Boston by Location (2015-2018)"))
   print(p)
 }
 
@@ -115,7 +115,7 @@ for(i in 141898:319073){
 table(data$OFFENSE_CATEGORY)*100/319073
 data$OFFENSE_CATEGORY <- as.factor(data$OFFENSE_CATEGORY)
 
-
+load("boston_crime_data_grouped.RData")
 
 data.month <- table(data[c(18,10)])
 data.week <- table(data[c(18,11)])
@@ -127,7 +127,7 @@ x.month <- names(data$MONTH)
 x.week <- names(data$DAY_OF_WEEK)
 x.hour <- names(data$HOUR)             
 for(i in 1:7){
-  par(mfcol = c(2,2),
+  par(mfcol = c(1,3),
       pty = "s")
   
   plot.month = data.month[i,]
