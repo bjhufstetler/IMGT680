@@ -1,11 +1,11 @@
 # Run this command once to link to my google API account (please do not share this key)
-register_google(key = "AIzaSyAxPCoK5JzfwK5A-7tvfYrk2L7Aiz99tZA", write=TRUE)
+# register_google(key = "AIzaSyAxPCoK5JzfwK5A-7tvfYrk2L7Aiz99tZA", write=TRUE)
 
 #install.packages("ggmap")
 #install.packages("rgdal")
 
-#setwd("~/IMGT680/Project")
-#load("BostonCrimeData2015-2018.RData")
+setwd("~/IMGT680/Project")
+load("BostonCrimeData2015-2018.RData")
 
 # Convert day of week to integer w/ Monday == 1
 data$DAY_OF_WEEK <- factor(data$DAY_OF_WEEK, levels = c("Monday", "Tuesday", "Wednesday", 
@@ -135,7 +135,6 @@ for(i in 1:7){
   plot.month = data.month[i,]
   name = row.names(data.month)[i]
   barplot(plot.month,
-          #col = "blue",
           ylab = "Counts",
           xlab = x.month,
           main = paste("Monthly",name," crimes"))
@@ -143,7 +142,6 @@ for(i in 1:7){
   plot.hour = data.hour[i,]
   name = row.names(data.hour)[i]
   barplot(plot.hour,
-          #col = "blue",
           ylab = "Counts",
           xlab = x.week,
           main = paste("Hourly ",name," Crimes"))
@@ -151,7 +149,6 @@ for(i in 1:7){
   plot.week = data.week[i,]
   name = row.names(data.week)[i]
   barplot(plot.week,
-          #col = "blue",
           ylab = "Counts",
           xlab = x.hour,
           main = paste("Daily ",name," Crimes"))
@@ -176,3 +173,9 @@ barplot(table(Traffic$OFFENSE_CODE_GROUP), main = "Crime distribution in Traffic
 barplot(table(Violent$OFFENSE_CODE_GROUP), main = "Crime distribution in Violent Category", ylab = "Numer of occurences",las=2)
 barplot(table(Drugsexr$OFFENSE_CODE_GROUP), main = "Crime distribution in Drugsex Category", ylab = "Numer of occurences",las=2)
 barplot(table(Money$OFFENSE_CODE_GROUP), main = "Crime distribution in Money Category", ylab = "Numer of occurences",las=2)
+
+
+
+#########################
+#K-means clustering
+
