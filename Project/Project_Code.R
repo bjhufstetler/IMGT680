@@ -1,11 +1,11 @@
 # Run this command once to link to my google API account (please do not share this key)
-  #register_google(key = "AIzaSyAxPCoK5JzfwK5A-7tvfYrk2L7Aiz99tZA", write=TRUE)
+register_google(key = "AIzaSyAxPCoK5JzfwK5A-7tvfYrk2L7Aiz99tZA", write=TRUE)
 
 #install.packages("ggmap")
 #install.packages("rgdal")
 
-setwd("~/IMGT680/Project")
-load("BostonCrimeData2015-2018.RData")
+#setwd("~/IMGT680/Project")
+#load("BostonCrimeData2015-2018.RData")
 
 # Convert day of week to integer w/ Monday == 1
 data$DAY_OF_WEEK <- factor(data$DAY_OF_WEEK, levels = c("Monday", "Tuesday", "Wednesday", 
@@ -116,6 +116,8 @@ table(data$OFFENSE_CATEGORY)*100/319073
 data$OFFENSE_CATEGORY <- as.factor(data$OFFENSE_CATEGORY)
 
 load("boston_crime_data_grouped.RData")
+library(dplyr)
+data %>% group_by(INCIDENT_NUMBER) %>% filter(n()>1)
 
 data.month <- table(data[c(18,10)])
 data.week <- table(data[c(18,11)])
@@ -157,11 +159,20 @@ for(i in 1:7){
                      
 
                                  
+####################
+#code to look at category distributions and graph it
+Other <- filter(data, OFFENSE_CATEGORY =="Other")
+Medical <- filter(data, OFFENSE_CATEGORY =="Medical")
+Theft <- filter(data, OFFENSE_CATEGORY =="Theft")
+Traffic <- filter(data, OFFENSE_CATEGORY =="Traffic")
+Violent <- filter(data, OFFENSE_CATEGORY =="Violent")
+Drugsex <- filter(data, OFFENSE_CATEGORY =="Drugsex")
+Money <- filter(data, OFFENSE_CATEGORY =="Money")
 
-                             
-
-                      
-
-
-    
-
+barplot(table(Other$OFFENSE_CODE_GROUP), main = "Crime distribution in Other Category", ylab = "Numer of occurences",las=2)
+barplot(table(Medical$OFFENSE_CODE_GROUP), main = "Crime distribution in Medical Category", ylab = "Numer of occurences",las=2)                     
+barplot(table(Theft$OFFENSE_CODE_GROUP), main = "Crime distribution in Theft Category", ylab = "Numer of occurences",las=2)
+barplot(table(Traffic$OFFENSE_CODE_GROUP), main = "Crime distribution in Traffic Category", ylab = "Numer of occurences",las=2)
+barplot(table(Violent$OFFENSE_CODE_GROUP), main = "Crime distribution in Violent Category", ylab = "Numer of occurences",las=2)
+barplot(table(Drugsexr$OFFENSE_CODE_GROUP), main = "Crime distribution in Drugsex Category", ylab = "Numer of occurences",las=2)
+barplot(table(Money$OFFENSE_CODE_GROUP), main = "Crime distribution in Money Category", ylab = "Numer of occurences",las=2)
