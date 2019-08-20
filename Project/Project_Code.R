@@ -153,7 +153,28 @@ for(i in 1:7){
           xlab = x.hour,
           main = paste("Daily ",name," Crimes"))
 }
-                     
+
+#########################
+# Other charts
+
+ggplot() +
+  geom_bar(data=data,
+           aes(x = factor(data$DISTRICT),
+               fill = factor(sort(data$OFFENSE_CATEGORY))),
+           position = "fill") +
+  scale_x_discrete("District") +
+  scale_y_continuous("Percent") +
+  guides(fill=guide_legend(title="Offense"))
+
+# OVERLAYED BAR CHARTS
+ggplot() +
+  geom_bar(data = data,
+           aes(x = factor(data$DISTRICT),
+               fill = factor(sort(data$OFFENSE_CATEGORY))),
+           position = "stack") +
+  scale_x_discrete("District") +
+  scale_y_continuous("Counts") +
+  guides(fill=guide_legend(title="Offense"))                      
 
                                  
 ####################
@@ -177,5 +198,28 @@ barplot(table(Money$OFFENSE_CODE_GROUP), main = "Crime distribution in Money Cat
 
 
 #########################
-#K-means clustering
+#Knn clustering
+# Standardize Numeric Variables
+
+data$lat.z <- scale(data$Lat)
+data$long.z <- scale(data$Long)
+data$month.z <- scale(data$MONTH)
+data$day.z <- scale(as.numeric(data$DAY_OF_WEEK))
+data$hour.z <- scale(data$HOUR)
+data$district.z <- scale(as.numeric(data$DISTRICT))
+
+library("rpart")
+cartfit <- rpart(OFFENSE_CATEGORY ~ lat.z + long.z + month.z + day.z + hour.z, data = data, method = "class")
+print(cartfit)
+
+library("rpart.plot")
+rpart.plot(cartfit, main = "Classification Tree")
+
+library("C50")
+names(data) 
+x <- data[,c(19:23)]
+y <- data$OFFENSE_CATEGORY
+c50fit1 <- C5.0(x, y)
+summary(c50fit1)
+
 
