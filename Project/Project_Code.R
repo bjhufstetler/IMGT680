@@ -217,7 +217,7 @@ rpart.plot(cartfit, main = "Classification Tree")
 
 library("C50")
 names(data) 
-x <- data[,c(19:23)]
+x <- data[,c(10:12,15:16)]
 y <- data$OFFENSE_CATEGORY
 c50fit1 <- C5.0(x, y)
 summary(c50fit1)
